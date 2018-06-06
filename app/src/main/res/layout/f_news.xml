@@ -21,27 +21,40 @@
 
     </net.cachapa.expandablelayout.ExpandableLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_below="@+id/expandable_layout"
-        android:id="@+id/recyclerView"
+    <com.hlab.animatedPullToRefresh.AnimatedPullToRefreshLayout
+        android:id="@+id/refresh_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:layoutAnimation="@anim/layout_news_animation"
-        android:overScrollMode="never"
-        android:paddingBottom="120dp" />
+        app:animationSpeed="fast"
+        app:headerBackgroundColor="@color/colorWhite"
+        app:headerLoopAnimIteration="1"
+        app:headerLoopAnimation="zoom"
+        app:headerText="Loading"
+        app:headerTextAnimIteration="2"
+        app:headerTextAnimation="rotateCW"
+        app:headerTextColor="@color/colorTextLight"
+        app:headerTextColorAnimationEnabled="false"
+        android:layout_below="@+id/expandable_layout">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_below="@+id/expandable_layout"
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:layoutAnimation="@anim/layout_news_animation"
+            android:overScrollMode="never"
+            android:paddingBottom="120dp" />
+
+    </com.hlab.animatedPullToRefresh.AnimatedPullToRefreshLayout>
+
+
 
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="6dp"
-        android:background="@drawable/img_shadow"
-        tools:ignore="ContentDescription" />
 
     <LinearLayout
         android:id="@+id/fl_items_not_found"

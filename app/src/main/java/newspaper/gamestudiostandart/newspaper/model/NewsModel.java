@@ -3,6 +3,8 @@ package newspaper.gamestudiostandart.newspaper.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 /*Model for one news*/
 public class NewsModel {
 
@@ -70,5 +72,23 @@ public class NewsModel {
 
     public void setPublishedAt(String publishedAt) {
         this.publishedAt = publishedAt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NewsModel newsModel = (NewsModel) o;
+        return Objects.equals(title, newsModel.title) &&
+                Objects.equals(description, newsModel.description) &&
+                Objects.equals(url, newsModel.url) &&
+                Objects.equals(urlToImage, newsModel.urlToImage) &&
+                Objects.equals(publishedAt, newsModel.publishedAt);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(title, description, url, urlToImage, publishedAt);
     }
 }

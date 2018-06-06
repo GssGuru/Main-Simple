@@ -12,7 +12,7 @@
         android:layout_marginEnd="34dp"
         android:layout_marginStart="34dp"
         android:layout_marginTop="34dp"
-        app:srcCompat="@drawable/img_menu_head"
+        app:srcCompat="@drawable/img_navigation_menu"
         tools:ignore="ContentDescription" />
 
 </FrameLayout>

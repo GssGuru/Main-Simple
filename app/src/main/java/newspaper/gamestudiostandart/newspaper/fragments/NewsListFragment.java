@@ -1,10 +1,10 @@
 package newspaper.gamestudiostandart.newspaper.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +12,12 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.hlab.animatedPullToRefresh.AnimatedPullToRefreshLayout;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
-
 import java.util.ArrayList;
-
 import me.everything.android.ui.overscroll.IOverScrollDecor;
 import me.everything.android.ui.overscroll.IOverScrollUpdateListener;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
@@ -42,10 +40,9 @@ public class NewsListFragment extends MvpAppCompatFragment implements NewsFragme
     private ProgressBar progress;
     private RecyclerView recyclerView;
     private LinearLayout fl_items_not_found;
-    private ExpandableLayout expandable_layout;
+    private AnimatedPullToRefreshLayout refresh_view;
 
-    public NewsListFragment() {
-    }
+    public NewsListFragment() {}
 
     /*the fragment takes String author and makes a request based on this  String and shows a news list with help from RecyclerView*/
     public static NewsListFragment newInstance(String author) {
@@ -65,52 +62,27 @@ public class NewsListFragment extends MvpAppCompatFragment implements NewsFragme
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.f_news, container, false);
 
         progress = v.findViewById(R.id.progress);
+        refresh_view = v.findViewById(R.id.refresh_view);
 
-        expandable_layout = v.findViewById(R.id.expandable_layout);
+        refresh_view.setOnRefreshListener(new AnimatedPullToRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.getNewsList(author);
+            }
+        });
+
         recyclerView = v.findViewById(R.id.recyclerView);
         fl_items_not_found = v.findViewById(R.id.fl_items_not_found);
         newsAdapter = new NewsAdapter(getContext());
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_news_animation);
         recyclerView.setLayoutAnimation(animation);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         recyclerView.setAdapter(newsAdapter);
-
-        VerticalOverScrollBounceEffectDecorator decor = new VerticalOverScrollBounceEffectDecorator(new RecyclerViewOverScrollDecorAdapter(recyclerView, new ItemTouchHelper.Callback() {
-            @Override
-            public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-                return 0;
-            }
-
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-
-            }
-        }));
-        
-        decor.setOverScrollUpdateListener(new IOverScrollUpdateListener() {
-            @Override
-            public void onOverScrollUpdate(IOverScrollDecor decor, int state, float offset) {
-                final View view = decor.getView();
-                if (offset > 140 && state == 3) {
-                    if(!expandable_layout.isExpanded()){
-                        expandable_layout.expand(true);
-                        presenter.getNewsList(author);
-                    }
-                }
-            }
-        });
-
         progress.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         fl_items_not_found.setVisibility(View.GONE);
@@ -144,21 +116,28 @@ public class NewsListFragment extends MvpAppCompatFragment implements NewsFragme
     @Override
     public void setListNews(ArrayList<NewsModel> list) {
         if (list.size() == 0) {
-            if(expandable_layout.isExpanded()){
-                expandable_layout.collapse(true);
+            if(refresh_view.isRefreshing()){
+                refresh_view.refreshComplete();
             }
             if (fl_items_not_found.getVisibility() != View.VISIBLE) {
                 Function.showContentView(fl_items_not_found, progress);
             }
         } else {
             newsAdapter.addAll(list);
-            if(expandable_layout.isExpanded()){
-                expandable_layout.collapse(true);
+            if(refresh_view.isRefreshing()){
+                refresh_view.refreshComplete();
             } else {
                 Function.showContentView(recyclerView, progress);
             }
         }
 
+    }
+
+    @Override
+    public void someList() {
+        if(refresh_view.isRefreshing()){
+            refresh_view.refreshComplete();
+        }
     }
 
 

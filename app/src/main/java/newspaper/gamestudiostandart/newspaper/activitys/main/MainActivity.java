@@ -16,15 +16,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-
 import com.arellomobile.mvp.presenter.InjectPresenter;
-
-
 import java.util.ArrayList;
 import java.util.Objects;
-
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import newspaper.gamestudiostandart.newspaper.R;
 import newspaper.gamestudiostandart.newspaper.activitys.BaseActivity;
 import newspaper.gamestudiostandart.newspaper.activitys.search.SearchActivity;
@@ -43,7 +38,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private Toolbar toolbar;
-    private Animation animation;
     private FloatingActionButton fab;
 
     @Override
@@ -51,12 +45,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_main);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        AppBarLayout app_bar = (AppBarLayout) findViewById(R.id.app_bar);
+        drawer = findViewById(R.id.drawer_layout);
+        AppBarLayout app_bar = findViewById(R.id.app_bar);
+        toolbar = findViewById(R.id.toolbar);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         toolbar.setBackgroundColor(getResources().getColor(R.color.colorWhite));
@@ -69,8 +62,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             }
         });
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setColorFilter(getResources().getColor(R.color.colorWhite));
+        fab = findViewById(R.id.fab);
+        fab.setColorFilter(getResources().getColor(R.color.colorIcons));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,24 +77,21 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (verticalOffset < 0) {
-                    if (fab.getVisibility() == View.VISIBLE) {
-                        animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fab_animation_hide);
-                        fab.startAnimation(animation);
-                        fab.setVisibility(View.GONE);
+                    if (fab.isShown()) {
+                        fab.hide();
                     }
                 } else {
-                    if (fab.getVisibility() != View.VISIBLE) {
-                        animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fab_animation_show);
-                        fab.startAnimation(animation);
-                        fab.setVisibility(View.VISIBLE);
+                    if (!fab.isShown()) {
+                        fab.show();
                     }
                 }
                 toolbar.setAlpha(1.5f - ((float) Math.abs(verticalOffset) / ((float) appBarLayout.getTotalScrollRange() / 3)));
             }
         });
 
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabLayout);
+        viewPager = findViewById(R.id.viewPager);
+        OverScrollDecoratorHelper.setUpOverScroll(viewPager);
 
         if (presenter.getChackList() != null) {
             setPages(presenter.getChackList());

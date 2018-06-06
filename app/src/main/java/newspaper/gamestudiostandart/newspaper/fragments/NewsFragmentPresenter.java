@@ -6,6 +6,9 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import newspaper.gamestudiostandart.newspaper.AppSetings;
 import newspaper.gamestudiostandart.newspaper.model.NewsModel;
@@ -21,7 +24,7 @@ public class NewsFragmentPresenter extends MvpPresenter<NewsFragmentView> implem
 
     private GetNewsListInteractor getNewsListInteractor;
     private DBHelperNewsInteractor dbHelperNewsInteractor;
-    private ArrayList<NewsModel> list;
+    private ArrayList<NewsModel> list = new ArrayList<>();
 
     public ArrayList<NewsModel> getList() {
         return list;
@@ -38,9 +41,20 @@ public class NewsFragmentPresenter extends MvpPresenter<NewsFragmentView> implem
 
     @Override
     public void onFinishedGetList(ArrayList<NewsModel> list, String author) {
-        this.list = list;
-        dbHelperNewsInteractor.setTableNews(this, author, this.list);
-        getViewState().setListNews(this.list);
+
+//        List list1 = Collections.singletonList(list);
+//        List list2 = Collections.singletonList(this.list);
+
+        if(Collections.singletonList(list).equals(Collections.singletonList(this.list))) {
+            getViewState().someList();
+            Log.d("NewsFragmentPresenter", "equals");
+        } else {
+            Log.d("NewsFragmentPresenter", "noequals");
+            this.list = list;
+            dbHelperNewsInteractor.setTableNews(this, author, this.list);
+            getViewState().setListNews(this.list);
+        }
+
     }
 
     @Override
