@@ -1,10 +1,28 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gamestudiostandart.news.fragments.NewsListFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:id="@+id/expandable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:el_duration="150"
+        app:el_expanded="false"
+        app:el_parallax="0.5">
+
+        <ProgressBar
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+    </net.cachapa.expandablelayout.ExpandableLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/expandable_layout"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,12 +45,12 @@
 
     <LinearLayout
         android:id="@+id/fl_items_not_found"
-        android:layout_marginTop="46dp"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal|top"
-        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal|top"
+        android:gravity="center"
+        android:orientation="vertical"
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
@@ -42,12 +60,12 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:textColor="@color/colorTextLight"
-            android:textSize="21sp"
-            android:text="@string/text_items_not_found"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/text_items_not_found"
+            android:textColor="@color/colorTextLight"
+            android:textSize="21sp" />
 
     </LinearLayout>
 
-</FrameLayout>
+</RelativeLayout>

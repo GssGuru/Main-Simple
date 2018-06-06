@@ -3,6 +3,8 @@ package newspaper.gamestudiostandart.newspaper.fragments;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +16,15 @@ import android.widget.ProgressBar;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
+import net.cachapa.expandablelayout.ExpandableLayout;
+
 import java.util.ArrayList;
 
+import me.everything.android.ui.overscroll.IOverScrollDecor;
+import me.everything.android.ui.overscroll.IOverScrollUpdateListener;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
+import me.everything.android.ui.overscroll.VerticalOverScrollBounceEffectDecorator;
+import me.everything.android.ui.overscroll.adapters.RecyclerViewOverScrollDecorAdapter;
 import newspaper.gamestudiostandart.newspaper.Function;
 import newspaper.gamestudiostandart.newspaper.R;
 import newspaper.gamestudiostandart.newspaper.dialogs.ErrorDialig;
@@ -34,6 +42,7 @@ public class NewsListFragment extends MvpAppCompatFragment implements NewsFragme
     private ProgressBar progress;
     private RecyclerView recyclerView;
     private LinearLayout fl_items_not_found;
+    private ExpandableLayout expandable_layout;
 
     public NewsListFragment() {
     }
@@ -62,6 +71,7 @@ public class NewsListFragment extends MvpAppCompatFragment implements NewsFragme
 
         progress = v.findViewById(R.id.progress);
 
+        expandable_layout = v.findViewById(R.id.expandable_layout);
         recyclerView = v.findViewById(R.id.recyclerView);
         fl_items_not_found = v.findViewById(R.id.fl_items_not_found);
         newsAdapter = new NewsAdapter(getContext());
@@ -70,6 +80,36 @@ public class NewsListFragment extends MvpAppCompatFragment implements NewsFragme
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         recyclerView.setAdapter(newsAdapter);
+
+        VerticalOverScrollBounceEffectDecorator decor = new VerticalOverScrollBounceEffectDecorator(new RecyclerViewOverScrollDecorAdapter(recyclerView, new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+                return 0;
+            }
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+
+            }
+        }));
+        
+        decor.setOverScrollUpdateListener(new IOverScrollUpdateListener() {
+            @Override
+            public void onOverScrollUpdate(IOverScrollDecor decor, int state, float offset) {
+                final View view = decor.getView();
+                if (offset > 140 && state == 3) {
+                    if(!expandable_layout.isExpanded()){
+                        expandable_layout.expand(true);
+                        presenter.getNewsList(author);
+                    }
+                }
+            }
+        });
 
         progress.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
@@ -104,12 +144,19 @@ public class NewsListFragment extends MvpAppCompatFragment implements NewsFragme
     @Override
     public void setListNews(ArrayList<NewsModel> list) {
         if (list.size() == 0) {
+            if(expandable_layout.isExpanded()){
+                expandable_layout.collapse(true);
+            }
             if (fl_items_not_found.getVisibility() != View.VISIBLE) {
                 Function.showContentView(fl_items_not_found, progress);
             }
         } else {
-            Function.showContentView(recyclerView, progress);
             newsAdapter.addAll(list);
+            if(expandable_layout.isExpanded()){
+                expandable_layout.collapse(true);
+            } else {
+                Function.showContentView(recyclerView, progress);
+            }
         }
 
     }
