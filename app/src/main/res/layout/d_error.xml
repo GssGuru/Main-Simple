@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="35dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginStart="35dp"
+        app:cardBackgroundColor="@color/colorWhite"
+        app:cardCornerRadius="2.0dip"
+        app:cardElevation="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:gravity="start"
+                android:text="@string/text_error"
+                android:textColor="@color/colorTextNormal"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="18dp"
+                android:gravity="start"
+                android:text="@string/text_error_message"
+                android:textColor="@color/colorTextNormal"
+                android:textSize="15sp"
+                android:textStyle="normal" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="11dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/fl_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="@string/text_exit"
+                        android:textColor="@color/colorButtons"
+                        android:textSize="13sp" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/fl_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="@string/text_try_again"
+                        android:textColor="@color/colorButtons"
+                        android:textSize="13sp" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">News</string>
+
+    <string name="menu_general">General</string>
+    <string name="menu_technology">Technology</string>
+    <string name="menu_sport">Sport</string>
+    <string name="menu_business">Business</string>
+    <string name="menu_politics">Politics</string>
+    <string name="menu_entertainment">Entertainment</string>
+    <string name="menu_gaming">Gaming</string>
+    <string name="menu_ecience">Ecience And Nature</string>
+    <string name="menu_music">Music</string>
+
+    <string name="text_error">Error</string>
+    <string name="text_exit">Exit</string>
+    <string name="text_try_again">Try again</string>
+    <string name="text_error_message">Error connecting to the server… Please try again or quit the application</string>
+
+    <string name="text_send_to">Send to</string>
+    <string name="text_save_minimum_resources">Save minimum 1 resources</string>
+    <string name="text_items_not_found">Items Not Found</string>
+
+</resources>
