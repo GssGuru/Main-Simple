@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,17 +11,14 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.hlab.animatedPullToRefresh.AnimatedPullToRefreshLayout;
+import com.baoyz.widget.PullRefreshLayout;
 
-import net.cachapa.expandablelayout.ExpandableLayout;
 import java.util.ArrayList;
-import me.everything.android.ui.overscroll.IOverScrollDecor;
-import me.everything.android.ui.overscroll.IOverScrollUpdateListener;
-import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
-import me.everything.android.ui.overscroll.VerticalOverScrollBounceEffectDecorator;
-import me.everything.android.ui.overscroll.adapters.RecyclerViewOverScrollDecorAdapter;
+import java.util.Objects;
+
 import newspaper.gamestudiostandart.newspaper.Function;
 import newspaper.gamestudiostandart.newspaper.R;
 import newspaper.gamestudiostandart.newspaper.dialogs.ErrorDialig;
@@ -40,11 +36,11 @@ public class NewsListFragment extends MvpAppCompatFragment implements NewsFragme
     private ProgressBar progress;
     private RecyclerView recyclerView;
     private LinearLayout fl_items_not_found;
-    private AnimatedPullToRefreshLayout refresh_view;
+    private PullRefreshLayout refresh_view;
 
-    public NewsListFragment() {}
+    public NewsListFragment() {
+    }
 
-    /*the fragment takes String author and makes a request based on this  String and shows a news list with help from RecyclerView*/
     public static NewsListFragment newInstance(String author) {
         NewsListFragment fragment = new NewsListFragment();
         Bundle args = new Bundle();
@@ -69,7 +65,7 @@ public class NewsListFragment extends MvpAppCompatFragment implements NewsFragme
         progress = v.findViewById(R.id.progress);
         refresh_view = v.findViewById(R.id.refresh_view);
 
-        refresh_view.setOnRefreshListener(new AnimatedPullToRefreshLayout.OnRefreshListener() {
+        refresh_view.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 presenter.getNewsList(author);
@@ -90,7 +86,6 @@ public class NewsListFragment extends MvpAppCompatFragment implements NewsFragme
         return v;
     }
 
-    /*Do reqwest only when fragment in screen*/
     boolean mUserVisibleHint;
 
     @Override
@@ -112,36 +107,30 @@ public class NewsListFragment extends MvpAppCompatFragment implements NewsFragme
         }
     }
 
-    /*request success*/
     @Override
     public void setListNews(ArrayList<NewsModel> list) {
         if (list.size() == 0) {
-            if(refresh_view.isRefreshing()){
-                refresh_view.refreshComplete();
-            }
             if (fl_items_not_found.getVisibility() != View.VISIBLE) {
                 Function.showContentView(fl_items_not_found, progress);
             }
         } else {
             newsAdapter.addAll(list);
-            if(refresh_view.isRefreshing()){
-                refresh_view.refreshComplete();
-            } else {
-                Function.showContentView(recyclerView, progress);
-            }
+            Function.showContentView(recyclerView, progress);
+
+        }
+        if (refresh_view.isShown()) {
+            refresh_view.setRefreshing(false);
         }
 
     }
 
     @Override
-    public void someList() {
-        if(refresh_view.isRefreshing()){
-            refresh_view.refreshComplete();
+    public void equalsList() {
+        if (refresh_view.isShown()) {
+            refresh_view.setRefreshing(false);
         }
     }
 
-
-    /*When we get error from request we show ErrorDialog*/
     @Override
     public void setError() {
         ErrorDialig mErrorDialig = ErrorDialig.newInstance();
@@ -153,10 +142,9 @@ public class NewsListFragment extends MvpAppCompatFragment implements NewsFragme
 
             @Override
             public void exit() {
-                getActivity().finish();
+                Objects.requireNonNull(getActivity()).finish();
             }
         });
-        mErrorDialig.show(getActivity().getSupportFragmentManager(), mErrorDialig.getClass().getSimpleName());
+        mErrorDialig.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), mErrorDialig.getClass().getSimpleName());
     }
-
 }

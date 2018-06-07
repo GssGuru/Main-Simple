@@ -4,40 +4,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <net.cachapa.expandablelayout.ExpandableLayout
-        android:id="@+id/expandable_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:el_duration="150"
-        app:el_expanded="false"
-        app:el_parallax="0.5">
-
-        <ProgressBar
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="22dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-
-    </net.cachapa.expandablelayout.ExpandableLayout>
-
-    <com.hlab.animatedPullToRefresh.AnimatedPullToRefreshLayout
+    <com.baoyz.widget.PullRefreshLayout
         android:id="@+id/refresh_view"
+        app:refreshType="smartisan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:animationSpeed="fast"
-        app:headerBackgroundColor="@color/colorWhite"
-        app:headerLoopAnimIteration="1"
-        app:headerLoopAnimation="zoom"
-        app:headerText="Loading"
-        app:headerTextAnimIteration="2"
-        app:headerTextAnimation="rotateCW"
-        app:headerTextColor="@color/colorTextLight"
-        app:headerTextColorAnimationEnabled="false"
-        android:layout_below="@+id/expandable_layout">
+        app:refreshColor="@color/colorTextLight">
 
         <android.support.v7.widget.RecyclerView
-            android:layout_below="@+id/expandable_layout"
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -46,9 +20,7 @@
             android:overScrollMode="never"
             android:paddingBottom="120dp" />
 
-    </com.hlab.animatedPullToRefresh.AnimatedPullToRefreshLayout>
-
-
+    </com.baoyz.widget.PullRefreshLayout>
 
     <ProgressBar
         android:id="@+id/progress"

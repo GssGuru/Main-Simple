@@ -1,15 +1,12 @@
 <resources>
     <string name="app_name">News</string>
 
-    <string name="menu_general">General</string>
+    <string name="menu_starred">Starred</string>
+    <string name="menu_populare">Popular</string>
     <string name="menu_technology">Technology</string>
     <string name="menu_sport">Sport</string>
     <string name="menu_business">Business</string>
-    <string name="menu_politics">Politics</string>
-    <string name="menu_entertainment">Entertainment</string>
-    <string name="menu_gaming">Gaming</string>
-    <string name="menu_ecience">Ecience And Nature</string>
-    <string name="menu_music">Music</string>
+    <string name="menu_other">Other</string>
 
     <string name="text_error">Error</string>
     <string name="text_exit">Exit</string>

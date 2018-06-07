@@ -29,7 +29,7 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> implem
 
     MainActivityPresenter() {
         dbHelperResoursesInteractor = DBHelperNews.getInstance();
-        category = Category.GENERAL;
+        category = Category.STARRED;
     }
 
     public void getListRresourses() {

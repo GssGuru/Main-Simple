@@ -152,7 +152,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             NewsViewPager newsViewPager = new NewsViewPager(getSupportFragmentManager(), myListFragments);
             viewPager.setAdapter(newsViewPager);
             tabLayout.setupWithViewPager(viewPager);
-            viewPager.setOffscreenPageLimit(list.size() - 1);
             for (int i = 0; i < list.size(); i++) {
                 Objects.requireNonNull(tabLayout.getTabAt(i)).setText(list.get(i).getName());
             }

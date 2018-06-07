@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 public enum Category implements Parcelable {
 
-    GENERAL, TEHNOLOGY, SPORT, BUSINESS, POLITICS, ENTERTAINMENT, GAMING, NATURE, MUSIC;
+    STARRED, POPULAR, TEHNOLOGY, SPORT, BUSINESS, OTHER;
 
     @Override
     public int describeContents() {

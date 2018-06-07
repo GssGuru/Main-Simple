@@ -14,24 +14,18 @@ public class AppSetings {
 
     public static ArrayList<FragmentNewsModel> getList(Category category) {
         switch (category) {
-            case GENERAL:
-                return addListGeneralNews(new ArrayList<FragmentNewsModel>());
+            case STARRED:
+                return addMyFavorite(new ArrayList<FragmentNewsModel>());
+            case POPULAR:
+                return addListPopularNews(new ArrayList<FragmentNewsModel>());
             case TEHNOLOGY:
                 return addListTechnologyNews(new ArrayList<FragmentNewsModel>());
             case SPORT:
                 return addListSportNews(new ArrayList<FragmentNewsModel>());
             case BUSINESS:
                 return addListBusinessNews(new ArrayList<FragmentNewsModel>());
-            case POLITICS:
-                return addListPoliticsNews(new ArrayList<FragmentNewsModel>());
-            case ENTERTAINMENT:
-                return addListEntertainmentNews(new ArrayList<FragmentNewsModel>());
-            case GAMING:
-                return addListGamingNews(new ArrayList<FragmentNewsModel>());
-            case NATURE:
-                return addListEcienceEndNatureNews(new ArrayList<FragmentNewsModel>());
-            case MUSIC:
-                return addListMusicNews(new ArrayList<FragmentNewsModel>());
+            case OTHER:
+                return addListOther(new ArrayList<FragmentNewsModel>());
             default:
                 break;
         }
@@ -39,17 +33,31 @@ public class AppSetings {
         return null;
     }
 
+
+    private static ArrayList<FragmentNewsModel> addMyFavorite(ArrayList<FragmentNewsModel> mList) {
+        mList.addAll(addListPopularNews(new ArrayList<FragmentNewsModel>()));
+        mList.addAll(addListTechnologyNews(new ArrayList<FragmentNewsModel>()));
+        mList.addAll(addListSportNews(new ArrayList<FragmentNewsModel>()));
+        mList.addAll(addListBusinessNews(new ArrayList<FragmentNewsModel>()));
+        mList.addAll(addListOther(new ArrayList<FragmentNewsModel>()));
+        for (int i = 0; i < mList.size();i++){
+            mList.get(i).setCheck(i<4);
+        }
+        return mList;
+    }
+
+
     /*
-    add GENERAL resources
+    add POPULAR resources
     */
-    private static ArrayList<FragmentNewsModel> addListGeneralNews(ArrayList<FragmentNewsModel> mList) {
+    private static ArrayList<FragmentNewsModel> addListPopularNews(ArrayList<FragmentNewsModel> mList) {
 
         mList.add(new FragmentNewsModel("The Washington Post", "the-washington-post", true));
         mList.add(new FragmentNewsModel("The New York Times", "the-new-york-times", true));
         mList.add(new FragmentNewsModel("The Telegraph", "the-telegraph"));
         mList.add(new FragmentNewsModel("CNN", "cnn", true));
         mList.add(new FragmentNewsModel("Time", "time"));
-        mList.add(new FragmentNewsModel("BBC News", "bbc-news"));
+        mList.add(new FragmentNewsModel("BBC News", "bbc-news", true));
         mList.add(new FragmentNewsModel("Associated Press", "associated-press"));
         mList.add(new FragmentNewsModel("Independent", "independent"));
         mList.add(new FragmentNewsModel("Reuters", "reuters"));
@@ -71,7 +79,7 @@ public class AppSetings {
         mList.add(new FragmentNewsModel("TechCrunch", "techcrunch"));
         mList.add(new FragmentNewsModel("TechRadar", "techradar", true));
         mList.add(new FragmentNewsModel("The Verge", "the-verge"));
-        mList.add(new FragmentNewsModel("Wired.de", "wired-de"));
+        mList.add(new FragmentNewsModel("Wired.de", "wired-de", true));
         return mList;
     }
 
@@ -82,7 +90,7 @@ public class AppSetings {
         mList.add(new FragmentNewsModel("BBC Sport", "bbc-sport", true));
         mList.add(new FragmentNewsModel("Fox Sports", "fox-sports", true));
         mList.add(new FragmentNewsModel("ESPN", "espn", true));
-        mList.add(new FragmentNewsModel("Football Italia", "football-italia"));
+        mList.add(new FragmentNewsModel("Football Italia", "football-italia", true));
         mList.add(new FragmentNewsModel("FourFourTwo", "four-four-two"));
         mList.add(new FragmentNewsModel("The Sport Bible", "the-sport-bible"));
         mList.add(new FragmentNewsModel("NFL News", "nfl-news"));
@@ -97,7 +105,7 @@ public class AppSetings {
         mList.add(new FragmentNewsModel("Bloomberg", "bloomberg", true));
         mList.add(new FragmentNewsModel("The Wall Street Journal", "the-wall-street-journal", true));
         mList.add(new FragmentNewsModel("Business Insider", "business-insider", true));
-        mList.add(new FragmentNewsModel("Business Insider (UK)", "business-insider-uk"));
+        mList.add(new FragmentNewsModel("Business Insider (UK)", "business-insider-uk", true));
         mList.add(new FragmentNewsModel("CNBC", "cnbc"));
         mList.add(new FragmentNewsModel("Fortune", "fortune"));
         mList.add(new FragmentNewsModel("The Economist", "the-economist"));
@@ -106,48 +114,20 @@ public class AppSetings {
     }
 
     /*
-    add POLITICS resources
+    add OTHER resources
     */
-    private static ArrayList<FragmentNewsModel> addListPoliticsNews(ArrayList<FragmentNewsModel> mList) {
+    private static ArrayList<FragmentNewsModel> addListOther(ArrayList<FragmentNewsModel> mList) {
         mList.add(new FragmentNewsModel("Breitbart News", "breitbart-news", true));
-        return mList;
-    }
-
-    /*
-    add ENTERTAINMENT resources
-    */
-    private static ArrayList<FragmentNewsModel> addListEntertainmentNews(ArrayList<FragmentNewsModel> mList) {
         mList.add(new FragmentNewsModel("Buzzfeed", "buzzfeed", true));
-        mList.add(new FragmentNewsModel("Daily Mail", "daily-mail", true));
+        mList.add(new FragmentNewsModel("Daily Mail", "daily-mail"));
         mList.add(new FragmentNewsModel("Entertainment Weekly", "entertainment-weekly", true));
         mList.add(new FragmentNewsModel("Mashable", "mashable"));
         mList.add(new FragmentNewsModel("The Lad Bible", "the-lad-bible"));
-        return mList;
-    }
-
-    /*
-    set GAMING resources
-    */
-    private static ArrayList<FragmentNewsModel> addListGamingNews(ArrayList<FragmentNewsModel> mList) {
         mList.add(new FragmentNewsModel("IGN", "ign", true));
-        mList.add(new FragmentNewsModel("Polygon", "polygon", true));
-        return mList;
-    }
-
-    /*
-    add ECIENCE resources
-    */
-    private static ArrayList<FragmentNewsModel> addListEcienceEndNatureNews(ArrayList<FragmentNewsModel> mList) {
+        mList.add(new FragmentNewsModel("Polygon", "polygon"));
         mList.add(new FragmentNewsModel("National Geographic", "national-geographic", true));
         mList.add(new FragmentNewsModel("New Scientist", "new-scientist", true));
-        return mList;
-    }
-
-    /*
-    add MUSIC resources
-    */
-    private static ArrayList<FragmentNewsModel> addListMusicNews(ArrayList<FragmentNewsModel> mList) {
-        mList.add(new FragmentNewsModel("MTV News", "mtv-news", true));
+        mList.add(new FragmentNewsModel("MTV News", "mtv-news"));
         mList.add(new FragmentNewsModel("MTV News (UK)", "mtv-news-uk", true));
         return mList;
     }

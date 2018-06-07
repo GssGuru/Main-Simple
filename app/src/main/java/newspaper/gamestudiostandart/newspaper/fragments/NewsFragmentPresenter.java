@@ -24,7 +24,7 @@ public class NewsFragmentPresenter extends MvpPresenter<NewsFragmentView> implem
 
     private GetNewsListInteractor getNewsListInteractor;
     private DBHelperNewsInteractor dbHelperNewsInteractor;
-    private ArrayList<NewsModel> list = new ArrayList<>();
+    private ArrayList<NewsModel> list;
 
     public ArrayList<NewsModel> getList() {
         return list;
@@ -41,20 +41,19 @@ public class NewsFragmentPresenter extends MvpPresenter<NewsFragmentView> implem
 
     @Override
     public void onFinishedGetList(ArrayList<NewsModel> list, String author) {
-
-//        List list1 = Collections.singletonList(list);
-//        List list2 = Collections.singletonList(this.list);
-
-        if(Collections.singletonList(list).equals(Collections.singletonList(this.list))) {
-            getViewState().someList();
-            Log.d("NewsFragmentPresenter", "equals");
+        if(this.list != null){
+            if(Collections.singletonList(list).equals(Collections.singletonList(this.list))) {
+                getViewState().equalsList();
+            } else {
+                this.list = list;
+                dbHelperNewsInteractor.setTableNews(this, author, this.list);
+                getViewState().setListNews(this.list);
+            }
         } else {
-            Log.d("NewsFragmentPresenter", "noequals");
             this.list = list;
             dbHelperNewsInteractor.setTableNews(this, author, this.list);
             getViewState().setListNews(this.list);
         }
-
     }
 
     @Override
@@ -69,7 +68,5 @@ public class NewsFragmentPresenter extends MvpPresenter<NewsFragmentView> implem
     }
 
     @Override
-    public void addListToNewsListner(boolean saccess) {
-        Log.d(AppSetings.LOGS, getClass().getSimpleName() + " addListToNewsListner - " + saccess);
-    }
+    public void addListToNewsListner(boolean saccess) {}
 }

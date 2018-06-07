@@ -66,7 +66,7 @@
             android:layout_margin="16dp"
             android:layout_gravity="bottom|end"
             app:backgroundTint="@color/colorWhite"
-            app:srcCompat="@drawable/ic_add" />
+            app:srcCompat="@drawable/ic_search_add" />
 
     </android.support.design.widget.CoordinatorLayout>
 

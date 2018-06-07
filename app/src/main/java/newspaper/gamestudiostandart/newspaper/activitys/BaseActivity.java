@@ -25,32 +25,23 @@ public class BaseActivity extends MvpAppCompatActivity {
 
         Category category = null;
         switch (id) {
-            case R.id.nav_general:
-                category = Category.GENERAL;
+            case R.id.i_my_favorite:
+                category = Category.STARRED;
                 break;
-            case R.id.nav_technology:
+            case R.id.i_popular:
+                category = Category.POPULAR;
+                break;
+            case R.id.i_tehnology:
                 category = Category.TEHNOLOGY;
                 break;
-            case R.id.nav_sport:
+            case R.id.i_sport:
                 category = Category.SPORT;
                 break;
-            case R.id.nav_business:
+            case R.id.i_busines:
                 category = Category.BUSINESS;
                 break;
-            case R.id.nav_politics:
-                category = Category.POLITICS;
-                break;
-            case R.id.nav_entertainment:
-                category = Category.ENTERTAINMENT;
-                break;
-            case R.id.nav_gaming:
-                category = Category.GAMING;
-                break;
-            case R.id.nav_ecience_end_nature:
-                category = Category.NATURE;
-                break;
-            case R.id.nav_music:
-                category = Category.MUSIC;
+            case R.id.i_other:
+                category = Category.OTHER;
                 break;
         }
         return category;
