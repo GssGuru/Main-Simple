@@ -5,7 +5,7 @@ Open Code
 
 ![](http://i.imgur.com/Ssfp7.gif)
 
-![](http://i.imgur.com/60bts.gif)
+![](http://media.giphy.com/media/APq0XFdvcrrSbUQAkv/giphy.gif)
 
 ![Screenshot](https://lh3.googleusercontent.com/rEN1WU9UQBjgqXeHDXxYK158CE53ZdWkOk3mDcjP5Ef6_2WN7QnJOHrzjgPyJJkyOw=w3384-h1604-rw)
 
