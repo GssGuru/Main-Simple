@@ -6,7 +6,7 @@ import com.arellomobile.mvp.MvpPresenter;
 import java.util.ArrayList;
 
 import newspaper.gamestudiostandart.newspaper.model.Category;
-import newspaper.gamestudiostandart.newspaper.model.FragmentNewsModel;
+import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
 import newspaper.gamestudiostandart.newspaper.repository.getfromstorege.DBHelperNews;
 import newspaper.gamestudiostandart.newspaper.repository.getfromstorege.DBHelperResoursesInteractor;
 
@@ -21,9 +21,9 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> implem
         return category;
     }
 
-    private ArrayList<FragmentNewsModel> listCheckedModels;
+    private ArrayList<ResourseModel> listCheckedModels;
 
-    public ArrayList<FragmentNewsModel> getChackList() {
+    public ArrayList<ResourseModel> getChackList() {
         return listCheckedModels;
     }
 
@@ -42,7 +42,7 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> implem
     }
 
     @Override
-    public void getListFromResourseListner(ArrayList<FragmentNewsModel> list) {
+    public void getListFromResourseListner(ArrayList<ResourseModel> list) {
         if (listCheckedModels == null) {
             listCheckedModels = new ArrayList<>();
         }

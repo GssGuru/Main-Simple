@@ -1,16 +1,11 @@
 package newspaper.gamestudiostandart.newspaper.fragments;
 
-import android.util.Log;
-
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
-import newspaper.gamestudiostandart.newspaper.AppSetings;
 import newspaper.gamestudiostandart.newspaper.model.NewsModel;
 import newspaper.gamestudiostandart.newspaper.repository.geffromweb.GetNewsListImplement;
 import newspaper.gamestudiostandart.newspaper.repository.geffromweb.GetNewsListInteractor;
@@ -41,8 +36,8 @@ public class NewsFragmentPresenter extends MvpPresenter<NewsFragmentView> implem
 
     @Override
     public void onFinishedGetList(ArrayList<NewsModel> list, String author) {
-        if(this.list != null){
-            if(Collections.singletonList(list).equals(Collections.singletonList(this.list))) {
+        if (this.list != null) {
+            if (Collections.singletonList(list).equals(Collections.singletonList(this.list))) {
                 getViewState().equalsList();
             } else {
                 this.list = list;
@@ -68,5 +63,6 @@ public class NewsFragmentPresenter extends MvpPresenter<NewsFragmentView> implem
     }
 
     @Override
-    public void addListToNewsListner(boolean saccess) {}
+    public void addListToNewsListner(boolean saccess) {
+    }
 }

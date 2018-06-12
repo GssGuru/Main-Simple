@@ -16,16 +16,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+
 import com.arellomobile.mvp.presenter.InjectPresenter;
+
 import java.util.ArrayList;
 import java.util.Objects;
+
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import newspaper.gamestudiostandart.newspaper.R;
 import newspaper.gamestudiostandart.newspaper.activitys.BaseActivity;
 import newspaper.gamestudiostandart.newspaper.activitys.search.SearchActivity;
 import newspaper.gamestudiostandart.newspaper.fragments.NewsListFragment;
 import newspaper.gamestudiostandart.newspaper.fragments.NewsViewPager;
-import newspaper.gamestudiostandart.newspaper.model.FragmentNewsModel;
+import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, MainActivityView {
 
@@ -115,7 +118,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     @Override
-    public void setList(ArrayList<FragmentNewsModel> list) {
+    public void setList(ArrayList<ResourseModel> list) {
         viewPager.setVisibility(View.VISIBLE);
         setPages(list);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -141,7 +144,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
     }
 
-    public void setPages(ArrayList<FragmentNewsModel> list) {
+    public void setPages(ArrayList<ResourseModel> list) {
         toolbar.setTitle(String.valueOf(presenter.getCategory()));
         toolbar.setTitleTextColor(getResources().getColor(R.color.colorIcons));
         if (list.size() != 0) {

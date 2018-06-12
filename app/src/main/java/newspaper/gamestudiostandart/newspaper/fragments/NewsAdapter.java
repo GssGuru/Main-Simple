@@ -3,6 +3,7 @@ package newspaper.gamestudiostandart.newspaper.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -35,15 +36,16 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         this.list = new ArrayList<>();
     }
 
+    @NonNull
     @Override
-    public NewsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public NewsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.i_news, parent, false);
         return new NewsAdapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(final NewsAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final NewsAdapter.ViewHolder holder, final int position) {
 
         final NewsModel newsModel = list.get(position);
 

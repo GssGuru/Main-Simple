@@ -4,12 +4,12 @@ package newspaper.gamestudiostandart.newspaper.repository.getfromstorege;
 import java.util.ArrayList;
 
 import newspaper.gamestudiostandart.newspaper.model.Category;
-import newspaper.gamestudiostandart.newspaper.model.FragmentNewsModel;
+import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
 
 public interface DBHelperResoursesInteractor {
 
     interface SetReadableListener {
-        void getListFromResourseListner(ArrayList<FragmentNewsModel> list);
+        void getListFromResourseListner(ArrayList<ResourseModel> list);
     }
 
     interface SetWritebleListner {
@@ -17,5 +17,5 @@ public interface DBHelperResoursesInteractor {
     }
 
     void getTableResourses(SetReadableListener readableListener, Category category);
-    void setTableResourses(SetWritebleListner writebleListner, Category category, ArrayList<FragmentNewsModel> list);
+    void setTableResourses(SetWritebleListner writebleListner, Category category, ArrayList<ResourseModel> list);
 }

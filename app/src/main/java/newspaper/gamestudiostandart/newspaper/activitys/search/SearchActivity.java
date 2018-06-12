@@ -23,7 +23,7 @@ import newspaper.gamestudiostandart.newspaper.Function;
 import newspaper.gamestudiostandart.newspaper.R;
 import newspaper.gamestudiostandart.newspaper.activitys.BaseActivity;
 import newspaper.gamestudiostandart.newspaper.model.Category;
-import newspaper.gamestudiostandart.newspaper.model.FragmentNewsModel;
+import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
 
 public class SearchActivity extends BaseActivity implements SearchActivityView {
 
@@ -43,9 +43,9 @@ public class SearchActivity extends BaseActivity implements SearchActivityView {
         setContentView(R.layout.a_search);
 
         Category category = getIntent().getParcelableExtra(ENUM_RESOURSES);
-        pb_loading = (ProgressBar) findViewById(R.id.pb_loading);
+        pb_loading = findViewById(R.id.pb_loading);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         toolbar.inflateMenu(R.menu.m_search);
         toolbar.setTitle(String.valueOf(category));
@@ -73,8 +73,8 @@ public class SearchActivity extends BaseActivity implements SearchActivityView {
             @Override
             public boolean onQueryTextChange(String newText) {
                 String qwerty = newText.toLowerCase();
-                final ArrayList<FragmentNewsModel> filteredModelList = new ArrayList<>();
-                for (FragmentNewsModel model : presenter.getListResourses()) {
+                final ArrayList<ResourseModel> filteredModelList = new ArrayList<>();
+                for (ResourseModel model : presenter.getListResourses()) {
                     final String text = model.getName().toLowerCase();
                     if (text.contains(qwerty)) {
                         filteredModelList.add(model);
@@ -95,7 +95,7 @@ public class SearchActivity extends BaseActivity implements SearchActivityView {
         });
 
         adapter = new AddResourseAdapter();
-        recycler_view = (RecyclerView) findViewById(R.id.recycler_view);
+        recycler_view = findViewById(R.id.recycler_view);
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this, R.anim.layout_search_animation);
         recycler_view.setLayoutAnimation(animation);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
@@ -112,7 +112,7 @@ public class SearchActivity extends BaseActivity implements SearchActivityView {
     }
 
     @Override
-    public void setList(ArrayList<FragmentNewsModel> list) {
+    public void setList(ArrayList<ResourseModel> list) {
         Function.showContentView(recycler_view, pb_loading);
         adapter.addAll(list);
     }

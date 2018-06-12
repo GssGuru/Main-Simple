@@ -1,5 +1,6 @@
 package newspaper.gamestudiostandart.newspaper.activitys.search;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,28 +11,29 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import newspaper.gamestudiostandart.newspaper.R;
-import newspaper.gamestudiostandart.newspaper.model.FragmentNewsModel;
+import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
 
 
 public class AddResourseAdapter extends RecyclerView.Adapter<AddResourseAdapter.ViewHolder> {
 
-    private ArrayList<FragmentNewsModel> list;
+    private ArrayList<ResourseModel> list;
 
     AddResourseAdapter() {
         this.list = new ArrayList<>();
     }
 
+    @NonNull
     @Override
-    public AddResourseAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AddResourseAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.i_add_resourses, parent, false);
         return new AddResourseAdapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(final AddResourseAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final AddResourseAdapter.ViewHolder holder, final int position) {
 
-        final FragmentNewsModel model = list.get(position);
+        final ResourseModel model = list.get(position);
 
         holder.cb_chack.setChecked(model.isCheck());
         holder.tv_name.setText(model.getName());
@@ -62,7 +64,7 @@ public class AddResourseAdapter extends RecyclerView.Adapter<AddResourseAdapter.
 
     }
 
-    void addAll(ArrayList<FragmentNewsModel> list) {
+    void addAll(ArrayList<ResourseModel> list) {
         this.list.clear();
         this.list.addAll(list);
         notifyDataSetChanged();

@@ -6,27 +6,27 @@ import android.os.Parcelable;
 import java.util.Objects;
 
 /*Model for creating a list of fragments by category*/
-public class FragmentNewsModel implements Parcelable {
+public class ResourseModel implements Parcelable {
 
     private String name;
     private String url;
     private boolean check = false;
 
-    protected FragmentNewsModel(Parcel in) {
+    protected ResourseModel(Parcel in) {
         name = in.readString();
         url = in.readString();
         check = in.readByte() != 0;
     }
 
-    public static final Creator<FragmentNewsModel> CREATOR = new Creator<FragmentNewsModel>() {
+    public static final Creator<ResourseModel> CREATOR = new Creator<ResourseModel>() {
         @Override
-        public FragmentNewsModel createFromParcel(Parcel in) {
-            return new FragmentNewsModel(in);
+        public ResourseModel createFromParcel(Parcel in) {
+            return new ResourseModel(in);
         }
 
         @Override
-        public FragmentNewsModel[] newArray(int size) {
-            return new FragmentNewsModel[size];
+        public ResourseModel[] newArray(int size) {
+            return new ResourseModel[size];
         }
     };
 
@@ -38,13 +38,13 @@ public class FragmentNewsModel implements Parcelable {
         this.check = check;
     }
 
-    public FragmentNewsModel(String name, String url, boolean check) {
+    public ResourseModel(String name, String url, boolean check) {
         this.name = name;
         this.url = url;
         this.check = check;
     }
 
-    public FragmentNewsModel(String name, String url) {
+    public ResourseModel(String name, String url) {
         this.name = name;
         this.url = url;
     }
@@ -73,7 +73,7 @@ public class FragmentNewsModel implements Parcelable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FragmentNewsModel that = (FragmentNewsModel) o;
+        ResourseModel that = (ResourseModel) o;
         return check == that.check &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(url, that.url);

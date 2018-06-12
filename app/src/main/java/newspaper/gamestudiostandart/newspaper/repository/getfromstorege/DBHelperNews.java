@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import newspaper.gamestudiostandart.newspaper.AppNews;
 import newspaper.gamestudiostandart.newspaper.AppSetings;
 import newspaper.gamestudiostandart.newspaper.model.Category;
-import newspaper.gamestudiostandart.newspaper.model.FragmentNewsModel;
+import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
 import newspaper.gamestudiostandart.newspaper.model.NewsModel;
 
 public class DBHelperNews extends SQLiteOpenHelper implements DBHelperResoursesInteractor, DBHelperNewsInteractor {
@@ -143,7 +143,7 @@ public class DBHelperNews extends SQLiteOpenHelper implements DBHelperResoursesI
                     writeToTableResourses(AppSetings.getList(category), String.valueOf(category));
                 }
 
-                final ArrayList<FragmentNewsModel> list = readFromTableResourse(category);
+                final ArrayList<ResourseModel> list = readFromTableResourse(category);
                 myHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -156,7 +156,7 @@ public class DBHelperNews extends SQLiteOpenHelper implements DBHelperResoursesI
     }
 
     @Override
-    public void setTableResourses(final SetWritebleListner writebleListner, final Category category, final ArrayList<FragmentNewsModel> list) {
+    public void setTableResourses(final SetWritebleListner writebleListner, final Category category, final ArrayList<ResourseModel> list) {
         final Handler myHandler = new Handler();
         Thread myThread = new Thread(new Runnable() {
             @Override
@@ -178,8 +178,8 @@ public class DBHelperNews extends SQLiteOpenHelper implements DBHelperResoursesI
         myThread.start();
     }
 
-    private synchronized ArrayList<FragmentNewsModel> readFromTableResourse(Category category) {
-        final ArrayList<FragmentNewsModel> list = new ArrayList<>();
+    private synchronized ArrayList<ResourseModel> readFromTableResourse(Category category) {
+        final ArrayList<ResourseModel> list = new ArrayList<>();
         try {
             Cursor c = getDB().query(getSavedName(String.valueOf(category)), null, null, null, null, null, null);
             if (c.moveToFirst()) {
@@ -187,7 +187,7 @@ public class DBHelperNews extends SQLiteOpenHelper implements DBHelperResoursesI
                 int indexdescription = c.getColumnIndex("url");
                 int indexurl = c.getColumnIndex("ischeck");
                 do {
-                    list.add(new FragmentNewsModel(c.getString(indextitte), c.getString(indexdescription), c.getString(indexurl).equals("1")));
+                    list.add(new ResourseModel(c.getString(indextitte), c.getString(indexdescription), c.getString(indexurl).equals("1")));
                 } while (c.moveToNext());
             }
             c.close();
@@ -197,7 +197,7 @@ public class DBHelperNews extends SQLiteOpenHelper implements DBHelperResoursesI
         return list;
     }
 
-    private synchronized void writeToTableResourses(ArrayList<FragmentNewsModel> list, String tableName) {
+    private synchronized void writeToTableResourses(ArrayList<ResourseModel> list, String tableName) {
         try {
             for (int i = 0; i < list.size(); i++) {
                 ContentValues values = new ContentValues();

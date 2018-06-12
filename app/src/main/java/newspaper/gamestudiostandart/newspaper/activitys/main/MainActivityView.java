@@ -4,8 +4,8 @@ import com.arellomobile.mvp.MvpView;
 
 import java.util.ArrayList;
 
-import newspaper.gamestudiostandart.newspaper.model.FragmentNewsModel;
+import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
 
 public interface MainActivityView extends MvpView {
-    void setList(ArrayList<FragmentNewsModel> list);
+    void setList(ArrayList<ResourseModel> list);
 }
