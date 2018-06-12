@@ -1,7 +1,7 @@
 # Newspaper
 Open Code
 
-![](http://i.imgur.com/OUkLi.gif)
+![](https://lh3.googleusercontent.com/-wBgXnmTcWNA/Wx-4DmtQazI/AAAAAAAAACQ/m0qFRvn2d8AG9lxXpRu-5ah9FXFj8xPiACJoC/w795-h531-rw/5.gif)
 
 ![](http://i.imgur.com/Ssfp7.gif)
 
