@@ -1,9 +1,9 @@
 # Newspaper
 Simple example client-server aplication
 
-Get news from https://newsapi.org/v1/ and show it by category
+Get news from http://play.google.com/store/apps/details?id=newspaper.gamestudiostandart.newspaper and show it by category
 
-Aplication on Google Play https://play.google.com/store/apps/details?id=newspaper.gamestudiostandart.newspaper
+Aplication on Google Play http://play.google.com/store/apps/details?id=newspaper.gamestudiostandart.newspaper
 
 # Code summary
 - Architectral patter(MVP) by Moxy
