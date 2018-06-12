@@ -1,7 +1,7 @@
 # Newspaper
 Simple example client-server aplication
 
-Get news from http://play.google.com/store/apps/details?id=newspaper.gamestudiostandart.newspaper and show it by category
+Get news from http://newsapi.org/ and show it by category
 
 Aplication on Google Play http://play.google.com/store/apps/details?id=newspaper.gamestudiostandart.newspaper
 
