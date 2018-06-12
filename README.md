@@ -1,7 +1,11 @@
 # Newspaper
 Open Code
 
-![Alt Text](https://lh3.googleusercontent.com/-wBgXnmTcWNA/Wx-4DmtQazI/AAAAAAAAACQ/m0qFRvn2d8AG9lxXpRu-5ah9FXFj8xPiACJoC/w795-h531-rw/5.gif)
+![](http://i.imgur.com/OUkLi.gif)
+
+![](http://i.imgur.com/Ssfp7.gif)
+
+![](http://i.imgur.com/60bts.gif)
 
 ![Screenshot](https://lh3.googleusercontent.com/rEN1WU9UQBjgqXeHDXxYK158CE53ZdWkOk3mDcjP5Ef6_2WN7QnJOHrzjgPyJJkyOw=w3384-h1604-rw)
 
