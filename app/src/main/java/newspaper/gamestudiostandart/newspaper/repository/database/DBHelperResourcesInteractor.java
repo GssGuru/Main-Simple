@@ -1,12 +1,12 @@
-package newspaper.gamestudiostandart.newspaper.repository.getfromstorege;
+package newspaper.gamestudiostandart.newspaper.repository.database;
 
 
 import java.util.ArrayList;
 
-import newspaper.gamestudiostandart.newspaper.model.Category;
-import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
+import newspaper.gamestudiostandart.newspaper.activitys.model.Category;
+import newspaper.gamestudiostandart.newspaper.activitys.model.ResourseModel;
 
-public interface DBHelperResoursesInteractor {
+public interface DBHelperResourcesInteractor {
 
     interface SetReadableListener {
         void getListFromResourseListner(ArrayList<ResourseModel> list);

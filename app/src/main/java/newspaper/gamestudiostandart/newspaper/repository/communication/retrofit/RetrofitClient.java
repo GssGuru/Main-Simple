@@ -1,4 +1,4 @@
-package newspaper.gamestudiostandart.newspaper.repository.geffromweb.retrofit;
+package newspaper.gamestudiostandart.newspaper.repository.communication.retrofit;
 
 import java.util.concurrent.TimeUnit;
 

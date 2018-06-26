@@ -1,4 +1,4 @@
-package newspaper.gamestudiostandart.newspaper.model;
+package newspaper.gamestudiostandart.newspaper.activitys.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

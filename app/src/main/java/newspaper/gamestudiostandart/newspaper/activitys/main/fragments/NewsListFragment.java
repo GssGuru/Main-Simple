@@ -1,4 +1,4 @@
-package newspaper.gamestudiostandart.newspaper.fragments;
+package newspaper.gamestudiostandart.newspaper.activitys.main.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,10 +19,10 @@ import com.baoyz.widget.PullRefreshLayout;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import newspaper.gamestudiostandart.newspaper.Function;
 import newspaper.gamestudiostandart.newspaper.R;
-import newspaper.gamestudiostandart.newspaper.dialogs.ErrorDialig;
-import newspaper.gamestudiostandart.newspaper.model.NewsModel;
+import newspaper.gamestudiostandart.newspaper.activitys.main.fragments.dialogs.ErrorDialig;
+import newspaper.gamestudiostandart.newspaper.activitys.main.fragments.models.NewsModel;
+import newspaper.gamestudiostandart.newspaper.activitys.utils.ShowContentAnimation;
 
 public class NewsListFragment extends MvpAppCompatFragment implements NewsFragmentView {
 
@@ -111,12 +111,11 @@ public class NewsListFragment extends MvpAppCompatFragment implements NewsFragme
     public void setListNews(ArrayList<NewsModel> list) {
         if (list.size() == 0) {
             if (fl_items_not_found.getVisibility() != View.VISIBLE) {
-                Function.showContentView(fl_items_not_found, progress);
+                new ShowContentAnimation(fl_items_not_found, progress);
             }
         } else {
             newsAdapter.addAll(list);
-            Function.showContentView(recyclerView, progress);
-
+            new ShowContentAnimation(recyclerView, progress);
         }
         if (refresh_view.isShown()) {
             refresh_view.setRefreshing(false);

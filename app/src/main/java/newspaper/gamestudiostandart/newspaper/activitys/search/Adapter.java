@@ -11,27 +11,27 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import newspaper.gamestudiostandart.newspaper.R;
-import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
+import newspaper.gamestudiostandart.newspaper.activitys.model.ResourseModel;
 
 
-public class AddResourseAdapter extends RecyclerView.Adapter<AddResourseAdapter.ViewHolder> {
+public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     private ArrayList<ResourseModel> list;
 
-    AddResourseAdapter() {
+    Adapter() {
         this.list = new ArrayList<>();
     }
 
     @NonNull
     @Override
-    public AddResourseAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.i_add_resourses, parent, false);
-        return new AddResourseAdapter.ViewHolder(v);
+        return new Adapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final AddResourseAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final Adapter.ViewHolder holder, final int position) {
 
         final ResourseModel model = list.get(position);
 

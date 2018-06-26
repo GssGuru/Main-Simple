@@ -7,50 +7,50 @@ import java.util.ArrayList;
 
 import newspaper.gamestudiostandart.newspaper.AppNews;
 import newspaper.gamestudiostandart.newspaper.R;
-import newspaper.gamestudiostandart.newspaper.model.Category;
-import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
-import newspaper.gamestudiostandart.newspaper.repository.getfromstorege.DBHelperNews;
-import newspaper.gamestudiostandart.newspaper.repository.getfromstorege.DBHelperResoursesInteractor;
+import newspaper.gamestudiostandart.newspaper.activitys.model.Category;
+import newspaper.gamestudiostandart.newspaper.activitys.model.ResourseModel;
+import newspaper.gamestudiostandart.newspaper.repository.database.DBHelper;
+import newspaper.gamestudiostandart.newspaper.repository.database.DBHelperResourcesInteractor;
 
 @InjectViewState
 public class SearchActivityPresenter extends MvpPresenter<SearchActivityView> implements
-        DBHelperResoursesInteractor.SetReadableListener, DBHelperResoursesInteractor.SetWritebleListner {
+        DBHelperResourcesInteractor.SetReadableListener, DBHelperResourcesInteractor.SetWritebleListner {
 
-    private DBHelperResoursesInteractor dbHelperResoursesInteractor;
-    private Category category;
-    private ArrayList<ResourseModel> listResourses;
+    private DBHelperResourcesInteractor mDBHelperResourcesInteractor;
+    private Category mCategory;
+    private ArrayList<ResourseModel> mListResources;
 
     SearchActivityPresenter() {
-        dbHelperResoursesInteractor = DBHelperNews.getInstance();
+        mDBHelperResourcesInteractor = DBHelper.getInstance();
     }
 
     public void getListRresourses(Category category) {
-        this.category = category;
-        dbHelperResoursesInteractor.getTableResourses(this, category);
+        this.mCategory = category;
+        mDBHelperResourcesInteractor.getTableResourses(this, category);
     }
 
     public void save() {
         int countSavedElenents = 0;
-        for (int i = 0; i < listResourses.size(); i++) {
-            if (listResourses.get(i).isCheck()) {
+        for (int i = 0; i < mListResources.size(); i++) {
+            if (mListResources.get(i).isCheck()) {
                 countSavedElenents++;
             }
         }
         if (countSavedElenents == 0) {
             getViewState().listSavedFailed(AppNews.getContext().getResources().getString(R.string.text_save_minimum_resources));
         } else {
-            dbHelperResoursesInteractor.setTableResourses(this, category, listResourses);
+            mDBHelperResourcesInteractor.setTableResourses(this, mCategory, mListResources);
         }
     }
 
     public ArrayList<ResourseModel> getListResourses() {
-        return listResourses;
+        return mListResources;
     }
 
     @Override
     public void getListFromResourseListner(ArrayList<ResourseModel> list) {
-        listResourses = list;
-        getViewState().setList(listResourses);
+        mListResources = list;
+        getViewState().setList(mListResources);
     }
 
     @Override

@@ -1,10 +1,10 @@
-package newspaper.gamestudiostandart.newspaper.repository.getfromstorege;
+package newspaper.gamestudiostandart.newspaper.repository.database;
 
 
 
 import java.util.ArrayList;
 
-import newspaper.gamestudiostandart.newspaper.model.NewsModel;
+import newspaper.gamestudiostandart.newspaper.activitys.main.fragments.models.NewsModel;
 
 public interface DBHelperNewsInteractor {
 

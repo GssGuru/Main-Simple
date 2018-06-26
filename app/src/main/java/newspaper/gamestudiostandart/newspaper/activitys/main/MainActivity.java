@@ -26,81 +26,82 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import newspaper.gamestudiostandart.newspaper.R;
 import newspaper.gamestudiostandart.newspaper.activitys.BaseActivity;
 import newspaper.gamestudiostandart.newspaper.activitys.search.SearchActivity;
-import newspaper.gamestudiostandart.newspaper.fragments.NewsListFragment;
-import newspaper.gamestudiostandart.newspaper.fragments.NewsViewPager;
-import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
+import newspaper.gamestudiostandart.newspaper.activitys.main.fragments.NewsListFragment;
+import newspaper.gamestudiostandart.newspaper.activitys.main.fragments.NewsViewPager;
+import newspaper.gamestudiostandart.newspaper.activitys.model.ResourseModel;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, MainActivityView {
 
     @InjectPresenter
-    MainActivityPresenter presenter;
+    MainActivityPresenter mPresenter;
 
-    private int idSelectedItem;
+    private int mIdSelectedItem;
 
-    private DrawerLayout drawer;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private Toolbar toolbar;
-    private FloatingActionButton fab;
+    private DrawerLayout mDrawer;
+    private TabLayout mTabLayout;
+    private ViewPager mViewPager;
+    private Toolbar mToolbar;
+    private FloatingActionButton mFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_main);
 
-        drawer = findViewById(R.id.drawer_layout);
-        AppBarLayout app_bar = findViewById(R.id.app_bar);
-        toolbar = findViewById(R.id.toolbar);
+        mDrawer = findViewById(R.id.drawer_layout);
+
+        mToolbar = findViewById(R.id.toolbar);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        toolbar.setBackgroundColor(getResources().getColor(R.color.colorWhite));
-        toolbar.setNavigationIcon(R.drawable.ic_menu);
-        Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.colorIcons), PorterDuff.Mode.SRC_ATOP);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        mToolbar.setBackgroundColor(getResources().getColor(R.color.colorWhite));
+        mToolbar.setNavigationIcon(R.drawable.ic_menu);
+        Objects.requireNonNull(mToolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.colorIcons), PorterDuff.Mode.SRC_ATOP);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawer.openDrawer(GravityCompat.START);
+                mDrawer.openDrawer(GravityCompat.START);
             }
         });
 
-        fab = findViewById(R.id.fab);
-        fab.setColorFilter(getResources().getColor(R.color.colorIcons));
-        fab.setOnClickListener(new View.OnClickListener() {
+        mFab = findViewById(R.id.fab);
+        mFab.setColorFilter(getResources().getColor(R.color.colorIcons));
+        mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent activity = new Intent(MainActivity.this, SearchActivity.class);
-                activity.putExtra(SearchActivity.ENUM_RESOURSES, (Parcelable) presenter.getCategory());
+                activity.putExtra(SearchActivity.ENUM_RESOURSES, (Parcelable) mPresenter.getCategory());
                 startActivityForResult(activity, SearchActivity.REQWEST_CODE_RESULT);
             }
         });
 
+        AppBarLayout app_bar = findViewById(R.id.app_bar);
         app_bar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (verticalOffset < 0) {
-                    if (fab.isShown()) {
-                        fab.hide();
+                    if (mFab.isShown()) {
+                        mFab.hide();
                     }
                 } else {
-                    if (!fab.isShown()) {
-                        fab.show();
+                    if (!mFab.isShown()) {
+                        mFab.show();
                     }
                 }
-                toolbar.setAlpha(1.5f - ((float) Math.abs(verticalOffset) / ((float) appBarLayout.getTotalScrollRange() / 3)));
+                mToolbar.setAlpha(1.5f - ((float) Math.abs(verticalOffset) / ((float) appBarLayout.getTotalScrollRange() / 3)));
             }
         });
 
-        tabLayout = findViewById(R.id.tabLayout);
-        viewPager = findViewById(R.id.viewPager);
-        OverScrollDecoratorHelper.setUpOverScroll(viewPager);
+        mTabLayout = findViewById(R.id.tabLayout);
+        mViewPager = findViewById(R.id.viewPager);
+        OverScrollDecoratorHelper.setUpOverScroll(mViewPager);
 
-        if (presenter.getChackList() != null) {
-            setPages(presenter.getChackList());
+        if (mPresenter.getChackList() != null) {
+            setViewPagerContent(mPresenter.getChackList());
         } else {
             navigationView.getMenu().getItem(0).setChecked(true);
-            presenter.getListRresourses();
+            mPresenter.getListRresourses();
         }
     }
 
@@ -108,28 +109,28 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
         int id = item.getItemId();
-        if (id != idSelectedItem) {
-            idSelectedItem = id;
-            presenter.getListRresourses(updateMenuByNavigationId(id));
+        if (id != mIdSelectedItem) {
+            mIdSelectedItem = id;
+            mPresenter.getListRresourses(updateMenuByNavigationId(id));
         } else {
-            drawer.closeDrawer(GravityCompat.START);
+            mDrawer.closeDrawer(GravityCompat.START);
         }
         return true;
     }
 
     @Override
     public void setList(ArrayList<ResourseModel> list) {
-        viewPager.setVisibility(View.VISIBLE);
-        setPages(list);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        mViewPager.setVisibility(View.VISIBLE);
+        setViewPagerContent(list);
+        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+            mDrawer.closeDrawer(GravityCompat.START);
         }
     }
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+            mDrawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -139,24 +140,24 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == SearchActivity.REQWEST_CODE_RESULT) {
             if (resultCode == RESULT_OK) {
-                presenter.getListRresourses();
+                mPresenter.getListRresourses();
             }
         }
     }
 
-    public void setPages(ArrayList<ResourseModel> list) {
-        toolbar.setTitle(String.valueOf(presenter.getCategory()));
-        toolbar.setTitleTextColor(getResources().getColor(R.color.colorIcons));
+    public void setViewPagerContent(ArrayList<ResourseModel> list) {
+        mToolbar.setTitle(String.valueOf(mPresenter.getCategory()));
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.colorIcons));
         if (list.size() != 0) {
             ArrayList<Fragment> myListFragments = new ArrayList<>();
             for (int i = 0; i < list.size(); i++) {
                 myListFragments.add(NewsListFragment.newInstance(String.valueOf(list.get(i).getUrl())));
             }
             NewsViewPager newsViewPager = new NewsViewPager(getSupportFragmentManager(), myListFragments);
-            viewPager.setAdapter(newsViewPager);
-            tabLayout.setupWithViewPager(viewPager);
+            mViewPager.setAdapter(newsViewPager);
+            mTabLayout.setupWithViewPager(mViewPager);
             for (int i = 0; i < list.size(); i++) {
-                Objects.requireNonNull(tabLayout.getTabAt(i)).setText(list.get(i).getName());
+                Objects.requireNonNull(mTabLayout.getTabAt(i)).setText(list.get(i).getName());
             }
         }
     }

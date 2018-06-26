@@ -2,8 +2,8 @@ package newspaper.gamestudiostandart.newspaper;
 
 import java.util.ArrayList;
 
-import newspaper.gamestudiostandart.newspaper.model.Category;
-import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
+import newspaper.gamestudiostandart.newspaper.activitys.model.Category;
+import newspaper.gamestudiostandart.newspaper.activitys.model.ResourseModel;
 
 /*This class is needed to collect all resources for request*/
 public class AppSetings {

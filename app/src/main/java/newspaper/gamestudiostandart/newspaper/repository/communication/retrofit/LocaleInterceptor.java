@@ -1,4 +1,4 @@
-package newspaper.gamestudiostandart.newspaper.repository.geffromweb.retrofit;
+package newspaper.gamestudiostandart.newspaper.repository.communication.retrofit;
 
 import java.io.IOException;
 
@@ -6,21 +6,23 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class TokenInterceptor implements Interceptor {
+public class LocaleInterceptor implements Interceptor {
 
-    private static final String USER_TOKEN_KEY = "token";
-    private String token;
+    private String locale;
 
-    public TokenInterceptor(String token) {
-        this.token = token;
+    private static final String CULTURE_HEADER_KEY = "culture";
+
+    public LocaleInterceptor(String locale) {
+        this.locale = locale;
     }
 
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         Request newRequest;
+
         newRequest = request.newBuilder()
-                .addHeader(USER_TOKEN_KEY, token)
+                .addHeader(CULTURE_HEADER_KEY, locale)
                 .build();
 
         return chain.proceed(newRequest);

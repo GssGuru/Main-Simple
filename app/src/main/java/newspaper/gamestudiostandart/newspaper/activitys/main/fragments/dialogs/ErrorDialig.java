@@ -1,4 +1,4 @@
-package newspaper.gamestudiostandart.newspaper.dialogs;
+package newspaper.gamestudiostandart.newspaper.activitys.main.fragments.dialogs;
 
 import android.content.DialogInterface;
 import android.os.Bundle;

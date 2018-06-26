@@ -19,23 +19,23 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
-import newspaper.gamestudiostandart.newspaper.Function;
 import newspaper.gamestudiostandart.newspaper.R;
 import newspaper.gamestudiostandart.newspaper.activitys.BaseActivity;
-import newspaper.gamestudiostandart.newspaper.model.Category;
-import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
+import newspaper.gamestudiostandart.newspaper.activitys.utils.ShowContentAnimation;
+import newspaper.gamestudiostandart.newspaper.activitys.model.Category;
+import newspaper.gamestudiostandart.newspaper.activitys.model.ResourseModel;
 
 public class SearchActivity extends BaseActivity implements SearchActivityView {
 
     @InjectPresenter
-    SearchActivityPresenter presenter;
+    SearchActivityPresenter mPresenter;
 
     public static final int REQWEST_CODE_RESULT = 1;
     public static final String ENUM_RESOURSES = "enum_resourses";
-    private ProgressBar pb_loading;
-    private RecyclerView recycler_view;
+    private ProgressBar mProgressBar;
+    private RecyclerView mRecyclerView;
 
-    private AddResourseAdapter adapter;
+    private Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class SearchActivity extends BaseActivity implements SearchActivityView {
         setContentView(R.layout.a_search);
 
         Category category = getIntent().getParcelableExtra(ENUM_RESOURSES);
-        pb_loading = findViewById(R.id.pb_loading);
+        mProgressBar = findViewById(R.id.pb_loading);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setBackgroundColor(getResources().getColor(R.color.colorWhite));
@@ -55,7 +55,7 @@ public class SearchActivity extends BaseActivity implements SearchActivityView {
         saveItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                presenter.save();
+                mPresenter.save();
                 return false;
             }
         });
@@ -74,7 +74,7 @@ public class SearchActivity extends BaseActivity implements SearchActivityView {
             public boolean onQueryTextChange(String newText) {
                 String qwerty = newText.toLowerCase();
                 final ArrayList<ResourseModel> filteredModelList = new ArrayList<>();
-                for (ResourseModel model : presenter.getListResourses()) {
+                for (ResourseModel model : mPresenter.getListResourses()) {
                     final String text = model.getName().toLowerCase();
                     if (text.contains(qwerty)) {
                         filteredModelList.add(model);
@@ -94,26 +94,26 @@ public class SearchActivity extends BaseActivity implements SearchActivityView {
             }
         });
 
-        adapter = new AddResourseAdapter();
-        recycler_view = findViewById(R.id.recycler_view);
+        adapter = new Adapter();
+        mRecyclerView = findViewById(R.id.recycler_view);
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this, R.anim.layout_search_animation);
-        recycler_view.setLayoutAnimation(animation);
-        recycler_view.setLayoutManager(new LinearLayoutManager(this));
-        OverScrollDecoratorHelper.setUpOverScroll(recycler_view, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
-        recycler_view.setAdapter(adapter);
+        mRecyclerView.setLayoutAnimation(animation);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+        mRecyclerView.setAdapter(adapter);
 
-        if (presenter.getListResourses() != null) {
-            adapter.addAll(presenter.getListResourses());
-            recycler_view.setVisibility(View.VISIBLE);
-            pb_loading.setVisibility(View.GONE);
+        if (mPresenter.getListResourses() != null) {
+            adapter.addAll(mPresenter.getListResourses());
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.GONE);
         } else {
-            presenter.getListRresourses(category);
+            mPresenter.getListRresourses(category);
         }
     }
 
     @Override
     public void setList(ArrayList<ResourseModel> list) {
-        Function.showContentView(recycler_view, pb_loading);
+        new ShowContentAnimation(mRecyclerView, mProgressBar);
         adapter.addAll(list);
     }
 

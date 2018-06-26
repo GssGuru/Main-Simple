@@ -1,12 +1,12 @@
-package newspaper.gamestudiostandart.newspaper;
+package newspaper.gamestudiostandart.newspaper.activitys.utils;
 
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
-public class Function {
+public class ShowContentAnimation {
 
-    public static void showContentView(final View newView, final View oldView) {
+    public ShowContentAnimation(final View newView, final View oldView) {
         final AlphaAnimation newViewAnimation = new AlphaAnimation(0.0f, 1.0f);
         AlphaAnimation oldViewAnimation = new AlphaAnimation(1.0f, 0.0f);
         newViewAnimation.setDuration(250);
@@ -27,5 +27,4 @@ public class Function {
             public void onAnimationRepeat(Animation animation) {}
         });
     }
-
 }

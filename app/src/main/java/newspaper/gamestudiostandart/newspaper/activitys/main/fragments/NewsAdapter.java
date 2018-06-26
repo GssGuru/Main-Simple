@@ -1,4 +1,4 @@
-package newspaper.gamestudiostandart.newspaper.fragments;
+package newspaper.gamestudiostandart.newspaper.activitys.main.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,7 +23,7 @@ import com.bumptech.glide.request.target.Target;
 import java.util.ArrayList;
 
 import newspaper.gamestudiostandart.newspaper.R;
-import newspaper.gamestudiostandart.newspaper.model.NewsModel;
+import newspaper.gamestudiostandart.newspaper.activitys.main.fragments.models.NewsModel;
 
 /*Simple adapter for News*/
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {

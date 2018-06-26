@@ -1,4 +1,4 @@
-package newspaper.gamestudiostandart.newspaper.fragments;
+package newspaper.gamestudiostandart.newspaper.activitys.main.fragments;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

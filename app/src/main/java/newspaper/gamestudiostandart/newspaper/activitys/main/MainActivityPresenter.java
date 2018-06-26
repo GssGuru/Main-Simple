@@ -5,53 +5,52 @@ import com.arellomobile.mvp.MvpPresenter;
 
 import java.util.ArrayList;
 
-import newspaper.gamestudiostandart.newspaper.model.Category;
-import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
-import newspaper.gamestudiostandart.newspaper.repository.getfromstorege.DBHelperNews;
-import newspaper.gamestudiostandart.newspaper.repository.getfromstorege.DBHelperResoursesInteractor;
+import newspaper.gamestudiostandart.newspaper.activitys.model.Category;
+import newspaper.gamestudiostandart.newspaper.activitys.model.ResourseModel;
+import newspaper.gamestudiostandart.newspaper.repository.database.DBHelper;
+import newspaper.gamestudiostandart.newspaper.repository.database.DBHelperResourcesInteractor;
 
 @InjectViewState
 public class MainActivityPresenter extends MvpPresenter<MainActivityView> implements
-        DBHelperResoursesInteractor.SetReadableListener {
+        DBHelperResourcesInteractor.SetReadableListener {
 
-    private DBHelperResoursesInteractor dbHelperResoursesInteractor;
-    private Category category;
-
-    public Category getCategory() {
-        return category;
-    }
-
-    private ArrayList<ResourseModel> listCheckedModels;
-
-    public ArrayList<ResourseModel> getChackList() {
-        return listCheckedModels;
-    }
+    private DBHelperResourcesInteractor mDBHelperResourcesInteractor;
+    private Category mCategory;
+    private ArrayList<ResourseModel> mListCheckedModels;
 
     MainActivityPresenter() {
-        dbHelperResoursesInteractor = DBHelperNews.getInstance();
-        category = Category.STARRED;
-    }
-
-    public void getListRresourses() {
-        dbHelperResoursesInteractor.getTableResourses(this, category);
-    }
-
-    public void getListRresourses(Category category) {
-        this.category = category;
-        dbHelperResoursesInteractor.getTableResourses(this, category);
+        mDBHelperResourcesInteractor = DBHelper.getInstance();
+        mCategory = Category.STARRED;
     }
 
     @Override
     public void getListFromResourseListner(ArrayList<ResourseModel> list) {
-        if (listCheckedModels == null) {
-            listCheckedModels = new ArrayList<>();
+        if (mListCheckedModels == null) {
+            mListCheckedModels = new ArrayList<>();
         }
-        listCheckedModels.clear();
+        mListCheckedModels.clear();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).isCheck()) {
-                listCheckedModels.add(list.get(i));
+                mListCheckedModels.add(list.get(i));
             }
         }
-        getViewState().setList(listCheckedModels);
+        getViewState().setList(mListCheckedModels);
+    }
+
+    public void getListRresourses() {
+        mDBHelperResourcesInteractor.getTableResourses(this, mCategory);
+    }
+
+    public void getListRresourses(Category category) {
+        this.mCategory = category;
+        mDBHelperResourcesInteractor.getTableResourses(this, category);
+    }
+
+    public Category getCategory() {
+        return mCategory;
+    }
+
+    public ArrayList<ResourseModel> getChackList() {
+        return mListCheckedModels;
     }
 }

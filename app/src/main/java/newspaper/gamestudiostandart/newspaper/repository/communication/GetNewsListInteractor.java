@@ -1,10 +1,10 @@
-package newspaper.gamestudiostandart.newspaper.repository.geffromweb;
+package newspaper.gamestudiostandart.newspaper.repository.communication;
 
 
 
 import java.util.ArrayList;
 
-import newspaper.gamestudiostandart.newspaper.model.NewsModel;
+import newspaper.gamestudiostandart.newspaper.activitys.main.fragments.models.NewsModel;
 
 public interface GetNewsListInteractor {
 

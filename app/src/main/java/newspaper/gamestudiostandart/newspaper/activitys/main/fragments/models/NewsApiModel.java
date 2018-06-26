@@ -1,4 +1,4 @@
-package newspaper.gamestudiostandart.newspaper.model;
+package newspaper.gamestudiostandart.newspaper.activitys.main.fragments.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

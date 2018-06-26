@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatDelegate;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 
 import newspaper.gamestudiostandart.newspaper.R;
-import newspaper.gamestudiostandart.newspaper.model.Category;
+import newspaper.gamestudiostandart.newspaper.activitys.model.Category;
 
 @SuppressLint("Registered")
 public class BaseActivity extends MvpAppCompatActivity {

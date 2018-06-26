@@ -1,4 +1,4 @@
-package newspaper.gamestudiostandart.newspaper.fragments;
+package newspaper.gamestudiostandart.newspaper.activitys.main.fragments;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
@@ -6,11 +6,11 @@ import com.arellomobile.mvp.MvpPresenter;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import newspaper.gamestudiostandart.newspaper.model.NewsModel;
-import newspaper.gamestudiostandart.newspaper.repository.geffromweb.GetNewsListImplement;
-import newspaper.gamestudiostandart.newspaper.repository.geffromweb.GetNewsListInteractor;
-import newspaper.gamestudiostandart.newspaper.repository.getfromstorege.DBHelperNews;
-import newspaper.gamestudiostandart.newspaper.repository.getfromstorege.DBHelperNewsInteractor;
+import newspaper.gamestudiostandart.newspaper.activitys.main.fragments.models.NewsModel;
+import newspaper.gamestudiostandart.newspaper.repository.communication.GetNewsListImplement;
+import newspaper.gamestudiostandart.newspaper.repository.communication.GetNewsListInteractor;
+import newspaper.gamestudiostandart.newspaper.repository.database.DBHelper;
+import newspaper.gamestudiostandart.newspaper.repository.database.DBHelperNewsInteractor;
 
 @InjectViewState
 public class NewsFragmentPresenter extends MvpPresenter<NewsFragmentView> implements
@@ -27,7 +27,7 @@ public class NewsFragmentPresenter extends MvpPresenter<NewsFragmentView> implem
 
     NewsFragmentPresenter() {
         this.getNewsListInteractor = new GetNewsListImplement();
-        dbHelperNewsInteractor = DBHelperNews.getInstance();
+        dbHelperNewsInteractor = DBHelper.getInstance();
     }
 
     public void getNewsList(String author) {

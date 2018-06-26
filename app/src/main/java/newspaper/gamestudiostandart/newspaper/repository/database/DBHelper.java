@@ -1,4 +1,4 @@
-package newspaper.gamestudiostandart.newspaper.repository.getfromstorege;
+package newspaper.gamestudiostandart.newspaper.repository.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,22 +12,22 @@ import java.util.ArrayList;
 
 import newspaper.gamestudiostandart.newspaper.AppNews;
 import newspaper.gamestudiostandart.newspaper.AppSetings;
-import newspaper.gamestudiostandart.newspaper.model.Category;
-import newspaper.gamestudiostandart.newspaper.model.ResourseModel;
-import newspaper.gamestudiostandart.newspaper.model.NewsModel;
+import newspaper.gamestudiostandart.newspaper.activitys.model.Category;
+import newspaper.gamestudiostandart.newspaper.activitys.model.ResourseModel;
+import newspaper.gamestudiostandart.newspaper.activitys.main.fragments.models.NewsModel;
 
-public class DBHelperNews extends SQLiteOpenHelper implements DBHelperResoursesInteractor, DBHelperNewsInteractor {
+public class DBHelper extends SQLiteOpenHelper implements DBHelperResourcesInteractor, DBHelperNewsInteractor {
 
-    private static DBHelperNews dbh = null;
+    private static DBHelper dbh = null;
     private static SQLiteDatabase DB = null;
 
-    private DBHelperNews(Context context) {
+    private DBHelper(Context context) {
         super(context, "MyDb", null, 1);
     }
 
-    public static synchronized DBHelperNews getInstance() {
+    public static synchronized DBHelper getInstance() {
         if (dbh == null)
-            dbh = new DBHelperNews(AppNews.getContext());
+            dbh = new DBHelper(AppNews.getContext());
         return dbh;
     }
 

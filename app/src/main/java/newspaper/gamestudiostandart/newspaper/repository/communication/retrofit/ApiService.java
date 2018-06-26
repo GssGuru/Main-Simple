@@ -1,6 +1,6 @@
-package newspaper.gamestudiostandart.newspaper.repository.geffromweb.retrofit;
+package newspaper.gamestudiostandart.newspaper.repository.communication.retrofit;
 
-import newspaper.gamestudiostandart.newspaper.model.NewsApiModel;
+import newspaper.gamestudiostandart.newspaper.activitys.main.fragments.models.NewsApiModel;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
