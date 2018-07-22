@@ -14,8 +14,8 @@
  
 
 - create [`communication`](https://github.com/gamestudiostandart/Newspaper/tree/master/app/src/main/java/newspaper/gamestudiostandart/newspaper/repository/communication) to [`server with API`](https://newsapi.org/)
-- create a database [`database.`](https://github.com/gamestudiostandart/Newspaper/tree/master/app/src/main/java/newspaper/gamestudiostandart/newspaper/repository/database) where we will transfer data from the server
-- create [`aplication.`](https://github.com/gamestudiostandart/Newspaper/tree/master/app/src/main/java/newspaper/gamestudiostandart/newspaper/aplication) It will work with the database and display it on the UI
+- create a [`database.`](https://github.com/gamestudiostandart/Newspaper/tree/master/app/src/main/java/newspaper/gamestudiostandart/newspaper/repository/database) where we will transfer data from the server
+- create [`aplication.`](https://github.com/gamestudiostandart/Newspaper/tree/master/app/src/main/java/newspaper/gamestudiostandart/newspaper/aplication) It will work with UI
 
 </p>
 </details>
