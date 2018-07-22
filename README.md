@@ -1,10 +1,5 @@
-# Newspaper
-Simple example client-server aplication
-Work with restful api
-
-Get news from http://newsapi.org/ and show it by category
-
-Aplication on Google Play http://play.google.com/store/apps/details?id=newspaper.gamestudiostandart.newspaper
+# Google Play
+[`My newspapers`](http://play.google.com/store/apps/details?id=newspaper.gamestudiostandart.newspaper)
 
 
 # About the aplication
