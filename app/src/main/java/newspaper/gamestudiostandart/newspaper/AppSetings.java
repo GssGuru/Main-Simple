@@ -2,56 +2,16 @@ package newspaper.gamestudiostandart.newspaper;
 
 import java.util.ArrayList;
 
-import newspaper.gamestudiostandart.newspaper.activitys.model.Category;
-import newspaper.gamestudiostandart.newspaper.activitys.model.ResourseModel;
+import newspaper.gamestudiostandart.newspaper.utils.model.Category;
+import newspaper.gamestudiostandart.newspaper.utils.model.ResourseModel;
 
 /*This class is needed to collect all resources for request*/
 public class AppSetings {
-
-    public static final String LOGS = "NewsLogsException";
-
-    public static ArrayList<String> listKeys;
-
-    public static ArrayList<ResourseModel> getList(Category category) {
-        switch (category) {
-            case STARRED:
-                return addMyFavorite(new ArrayList<ResourseModel>());
-            case POPULAR:
-                return addListPopularNews(new ArrayList<ResourseModel>());
-            case TEHNOLOGY:
-                return addListTechnologyNews(new ArrayList<ResourseModel>());
-            case SPORT:
-                return addListSportNews(new ArrayList<ResourseModel>());
-            case BUSINESS:
-                return addListBusinessNews(new ArrayList<ResourseModel>());
-            case OTHER:
-                return addListOther(new ArrayList<ResourseModel>());
-            default:
-                break;
-        }
-
-        return null;
-    }
-
-
-    private static ArrayList<ResourseModel> addMyFavorite(ArrayList<ResourseModel> mList) {
-        mList.addAll(addListPopularNews(new ArrayList<ResourseModel>()));
-        mList.addAll(addListTechnologyNews(new ArrayList<ResourseModel>()));
-        mList.addAll(addListSportNews(new ArrayList<ResourseModel>()));
-        mList.addAll(addListBusinessNews(new ArrayList<ResourseModel>()));
-        mList.addAll(addListOther(new ArrayList<ResourseModel>()));
-        for (int i = 0; i < mList.size();i++){
-            mList.get(i).setCheck(i<4);
-        }
-        return mList;
-    }
-
 
     /*
     add POPULAR resources
     */
     private static ArrayList<ResourseModel> addListPopularNews(ArrayList<ResourseModel> mList) {
-
         mList.add(new ResourseModel("The Washington Post", "the-washington-post", true));
         mList.add(new ResourseModel("The New York Times", "the-new-york-times", true));
         mList.add(new ResourseModel("The Telegraph", "the-telegraph"));
@@ -141,5 +101,42 @@ public class AppSetings {
         listKeys.add("d192b8870e094398976a7d54801b99d4");
         listKeys.add("ac0fc119593243c38fd77d1699ea0347");
         listKeys.add("9e5d5f981dd14a6aad17154b3f4c74fd");
+    }
+
+    public static final String LOGS = "NewsLogsException";
+
+    public static ArrayList<String> listKeys;
+
+    public static ArrayList<ResourseModel> getList(Category category) {
+        switch (category) {
+            case STARRED:
+                return addMyFavorite(new ArrayList<ResourseModel>());
+            case POPULAR:
+                return addListPopularNews(new ArrayList<ResourseModel>());
+            case TEHNOLOGY:
+                return addListTechnologyNews(new ArrayList<ResourseModel>());
+            case SPORT:
+                return addListSportNews(new ArrayList<ResourseModel>());
+            case BUSINESS:
+                return addListBusinessNews(new ArrayList<ResourseModel>());
+            case OTHER:
+                return addListOther(new ArrayList<ResourseModel>());
+            default:
+                break;
+        }
+
+        return null;
+    }
+
+    private static ArrayList<ResourseModel> addMyFavorite(ArrayList<ResourseModel> mList) {
+        mList.addAll(addListPopularNews(new ArrayList<ResourseModel>()));
+        mList.addAll(addListTechnologyNews(new ArrayList<ResourseModel>()));
+        mList.addAll(addListSportNews(new ArrayList<ResourseModel>()));
+        mList.addAll(addListBusinessNews(new ArrayList<ResourseModel>()));
+        mList.addAll(addListOther(new ArrayList<ResourseModel>()));
+        for (int i = 0; i < mList.size();i++){
+            mList.get(i).setCheck(i<4);
+        }
+        return mList;
     }
 }

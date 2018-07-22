@@ -12,9 +12,10 @@ import java.util.ArrayList;
 
 import newspaper.gamestudiostandart.newspaper.AppNews;
 import newspaper.gamestudiostandart.newspaper.AppSetings;
-import newspaper.gamestudiostandart.newspaper.activitys.model.Category;
-import newspaper.gamestudiostandart.newspaper.activitys.model.ResourseModel;
-import newspaper.gamestudiostandart.newspaper.activitys.main.fragments.models.NewsModel;
+import newspaper.gamestudiostandart.newspaper.utils.model.Category;
+import newspaper.gamestudiostandart.newspaper.utils.model.ResourseModel;
+import newspaper.gamestudiostandart.newspaper.utils.model.NewsModel;
+import newspaper.gamestudiostandart.newspaper.repository.database.inerfaces.ResourceTableListener;
 
 public class DBHelper extends SQLiteOpenHelper implements DBHelperResourcesInteractor, DBHelperNewsInteractor {
 
@@ -132,8 +133,10 @@ public class DBHelper extends SQLiteOpenHelper implements DBHelperResourcesInter
         }
     }
 
+
     @Override
-    public void getTableResourses(final SetReadableListener readableListener, final Category category) {
+    public void getTableResourses(final ResourceTableListener listener, final Category category) {
+
         final Handler myHandler = new Handler();
         Thread myThread = new Thread(new Runnable() {
             @Override
@@ -147,7 +150,7 @@ public class DBHelper extends SQLiteOpenHelper implements DBHelperResourcesInter
                 myHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        readableListener.getListFromResourseListner(list);
+                        listener.listFromResource(list);
                     }
                 });
             }
@@ -156,7 +159,7 @@ public class DBHelper extends SQLiteOpenHelper implements DBHelperResourcesInter
     }
 
     @Override
-    public void setTableResourses(final SetWritebleListner writebleListner, final Category category, final ArrayList<ResourseModel> list) {
+    public void setTableResourses(final ResourceTableListener listener, final Category category, final ArrayList<ResourseModel> list) {
         final Handler myHandler = new Handler();
         Thread myThread = new Thread(new Runnable() {
             @Override
@@ -170,7 +173,7 @@ public class DBHelper extends SQLiteOpenHelper implements DBHelperResourcesInter
                 myHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        writebleListner.addListToResoursesListner(true);
+                        listener.action(true);
                     }
                 });
             }

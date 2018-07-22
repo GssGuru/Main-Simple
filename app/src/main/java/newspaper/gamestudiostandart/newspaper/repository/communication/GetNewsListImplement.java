@@ -5,7 +5,8 @@ import java.util.Objects;
 import java.util.Random;
 
 import newspaper.gamestudiostandart.newspaper.AppSetings;
-import newspaper.gamestudiostandart.newspaper.activitys.main.fragments.models.NewsApiModel;
+import newspaper.gamestudiostandart.newspaper.utils.model.NewsApiModel;
+import newspaper.gamestudiostandart.newspaper.repository.communication.interfaces.OnFinishedListener;
 import newspaper.gamestudiostandart.newspaper.repository.communication.retrofit.RetrofitClient;
 import retrofit2.Call;
 import retrofit2.Callback;

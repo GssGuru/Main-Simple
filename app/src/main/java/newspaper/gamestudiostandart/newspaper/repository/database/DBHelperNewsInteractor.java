@@ -4,7 +4,7 @@ package newspaper.gamestudiostandart.newspaper.repository.database;
 
 import java.util.ArrayList;
 
-import newspaper.gamestudiostandart.newspaper.activitys.main.fragments.models.NewsModel;
+import newspaper.gamestudiostandart.newspaper.utils.model.NewsModel;
 
 public interface DBHelperNewsInteractor {
 

@@ -45,14 +45,6 @@ public class RetrofitClient {
             okHttpBuilder.addInterceptor(loggingInterceptor);
         }
 
-
-//        okHttpBuilder.addInterceptor(new LocaleInterceptor("en"));
-//        String token = "userToken";
-//        if(token != null && token.length() > 0){
-//            okHttpBuilder.addInterceptor(new TokenInterceptor(token));
-//        }
-
-
         return okHttpBuilder.build();
     }
 
