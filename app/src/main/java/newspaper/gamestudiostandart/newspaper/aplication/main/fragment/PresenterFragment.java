@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import newspaper.gamestudiostandart.newspaper.utils.model.NewsModel;
-import newspaper.gamestudiostandart.newspaper.repository.communication.GetNewsListImplement;
-import newspaper.gamestudiostandart.newspaper.repository.communication.GetNewsListInteractor;
-import newspaper.gamestudiostandart.newspaper.repository.communication.interfaces.OnFinishedListener;
+import newspaper.gamestudiostandart.newspaper.repository.communication.newslist.GetNewsListImplement;
+import newspaper.gamestudiostandart.newspaper.repository.communication.newslist.GetNewsListInteractor;
+import newspaper.gamestudiostandart.newspaper.repository.communication.newslist.interfaces.OnFinishedListener;
 import newspaper.gamestudiostandart.newspaper.repository.database.DBHelper;
 import newspaper.gamestudiostandart.newspaper.repository.database.DBHelperNewsInteractor;
 

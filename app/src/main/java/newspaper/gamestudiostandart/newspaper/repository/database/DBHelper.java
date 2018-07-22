@@ -37,7 +37,7 @@ public class DBHelper extends SQLiteOpenHelper implements DBHelperResourcesInter
             return DB;
         return this.getWritableDatabase();
     }
-    
+
     @Override
     public void getTableNews(final SetNewsListener listener, final String author) {
         final Handler myHandler = new Handler();

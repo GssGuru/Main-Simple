@@ -1,4 +1,4 @@
-package newspaper.gamestudiostandart.newspaper.repository.communication.interfaces;
+package newspaper.gamestudiostandart.newspaper.repository.communication.newslist.interfaces;
 
 import java.util.ArrayList;
 
