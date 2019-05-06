@@ -9,6 +9,6 @@ import newspaper.gamestudiostandart.newspaper.utils.model.NewsModel;
 public interface ViewFragment extends MvpView {
 
     void setListNews(ArrayList<NewsModel> list);
-    void equalsList();
+    void setEmptyList();
     void setError();
 }

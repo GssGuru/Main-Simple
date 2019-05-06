@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
-public class AppNews extends Application {
+public class MyApp extends Application {
 
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
@@ -13,7 +13,6 @@ public class AppNews extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = this;
-        AppSetings.addListKeys();
     }
 
     public static Context getContext(){

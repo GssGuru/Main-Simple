@@ -14,7 +14,6 @@ import java.util.Objects;
 
 import newspaper.gamestudiostandart.newspaper.R;
 
-/*Simple Error Dialog*/
 public class DialigError extends DialogFragment {
 
     public static DialigError newInstance() {
@@ -79,7 +78,6 @@ public class DialigError extends DialogFragment {
 
     public interface InterfaceCallback {
         void refresh();
-
         void exit();
     }
 

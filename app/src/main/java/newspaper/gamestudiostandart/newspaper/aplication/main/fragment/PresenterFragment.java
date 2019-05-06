@@ -4,66 +4,42 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
+import newspaper.gamestudiostandart.newspaper.model.interactors.news.NewsInteractor;
+import newspaper.gamestudiostandart.newspaper.model.interactors.news.interfaces.OnFinishedListener;
 import newspaper.gamestudiostandart.newspaper.utils.model.NewsModel;
-import newspaper.gamestudiostandart.newspaper.repository.communication.newslist.GetNewsListImplement;
-import newspaper.gamestudiostandart.newspaper.repository.communication.newslist.GetNewsListInteractor;
-import newspaper.gamestudiostandart.newspaper.repository.communication.newslist.interfaces.OnFinishedListener;
-import newspaper.gamestudiostandart.newspaper.repository.database.DBHelper;
-import newspaper.gamestudiostandart.newspaper.repository.database.DBHelperNewsInteractor;
 
 @InjectViewState
-public class PresenterFragment extends MvpPresenter<ViewFragment> implements
-        OnFinishedListener,
-        DBHelperNewsInteractor.SetNewsListener {
+public class PresenterFragment extends MvpPresenter<ViewFragment> {
 
-    private GetNewsListInteractor getNewsListInteractor;
-    private DBHelperNewsInteractor dbHelperNewsInteractor;
+    private NewsInteractor newsInteractor;
     private ArrayList<NewsModel> list;
 
-    public ArrayList<NewsModel> getList() {
-        return list;
-    }
-
-    PresenterFragment() {
-        this.getNewsListInteractor = new GetNewsListImplement();
-        dbHelperNewsInteractor = DBHelper.getInstance();
+    PresenterFragment(NewsInteractor newsInteractor) {
+        this.newsInteractor = newsInteractor;
     }
 
     public void getNewsList(String author) {
-        getNewsListInteractor.getList(this, author);
-    }
-
-    @Override
-    public void onFinishedGetList(ArrayList<NewsModel> list, String author) {
-        if (this.list != null) {
-            if (Collections.singletonList(list).equals(Collections.singletonList(this.list))) {
-                getViewState().equalsList();
-            } else {
-                this.list = list;
-                dbHelperNewsInteractor.setTableNews(this, author, this.list);
-                getViewState().setListNews(this.list);
-            }
+        if (list != null){
+            getViewState().setListNews(list);
         } else {
-            this.list = list;
-            dbHelperNewsInteractor.setTableNews(this, author, this.list);
-            getViewState().setListNews(this.list);
+            newsInteractor.getList(author, new OnFinishedListener() {
+                @Override
+                public void onFailedGetList(String message) {
+                    getViewState().setError();
+                }
+
+                @Override
+                public void onFinishedGetList(ArrayList<NewsModel> listNews) {
+                    if (listNews != null && listNews.size() != 0) {
+                        list = listNews;
+                        getViewState().setListNews(list);
+                    } else {
+                        getViewState().setEmptyList();
+                    }
+                }
+            });
         }
-    }
 
-    @Override
-    public void onFailedGetList(String message, String author) {
-        dbHelperNewsInteractor.getTableNews(this, author);
-    }
-
-    @Override
-    public void getListFromNewsListner(ArrayList<NewsModel> list) {
-        this.list = list;
-        getViewState().setListNews(this.list);
-    }
-
-    @Override
-    public void addListToNewsListner(boolean saccess) {
     }
 }

@@ -1,12 +1,14 @@
-package newspaper.gamestudiostandart.newspaper.utils;
+package newspaper.gamestudiostandart.newspaper.aplication;
 
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
-public class ShowContentAnimation {
+import com.arellomobile.mvp.MvpAppCompatFragment;
 
-    public ShowContentAnimation(final View newView, final View oldView) {
+public class BaseFragment extends MvpAppCompatFragment {
+
+    public void showContentAnimation(final View newView, final View oldView) {
         final AlphaAnimation newViewAnimation = new AlphaAnimation(0.0f, 1.0f);
         AlphaAnimation oldViewAnimation = new AlphaAnimation(1.0f, 0.0f);
         newViewAnimation.setDuration(250);
@@ -27,4 +29,5 @@ public class ShowContentAnimation {
             public void onAnimationRepeat(Animation animation) {}
         });
     }
+
 }

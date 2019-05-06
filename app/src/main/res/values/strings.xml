@@ -1,12 +1,5 @@
 <resources>
-    <string name="app_name">My newspapers</string>
-
-    <string name="menu_starred">Starred</string>
-    <string name="menu_populare">Popular</string>
-    <string name="menu_technology">Technology</string>
-    <string name="menu_sport">Sport</string>
-    <string name="menu_business">Business</string>
-    <string name="menu_other">Other</string>
+    <string name="app_name">My Newspapers</string>
 
     <string name="text_error">Error</string>
     <string name="text_exit">Exit</string>
@@ -14,7 +7,19 @@
     <string name="text_error_message">Error connecting to the server… Please try again or quit the application</string>
 
     <string name="text_send_to">Send to</string>
-    <string name="text_save_minimum_resources">Save minimum 1 resources</string>
     <string name="text_items_not_found">Items Not Found</string>
+
+    <string name="the_washington_post">The Washington Post</string>
+    <string name="the_new_york_times">The New York Times</string>
+    <string name="the_telegraph">The Telegraph</string>
+    <string name="cnn">CNN</string>
+    <string name="time">Time</string>
+    <string name="bbc_news">BBC News</string>
+    <string name="associated_press">Associated Press</string>
+    <string name="independent">Independent</string>
+    <string name="reuters">Reuters</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
