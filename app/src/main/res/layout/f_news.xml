@@ -15,35 +15,32 @@
         app:elevation="16dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            app:titleEnabled="false"
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|enterAlways">
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:titleEnabled="false">
 
             <android.support.v7.widget.Toolbar
-                app:layout_collapseMode="parallax"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="parallax" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.baoyz.widget.PullRefreshLayout
+        <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/refresh_view"
-            app:refreshType="smartisan"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:refreshColor="@color/colorTextLight">
+            android:layout_height="match_parent">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -54,7 +51,7 @@
                 android:overScrollMode="never"
                 android:paddingBottom="120dp" />
 
-        </com.baoyz.widget.PullRefreshLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
 
         <ProgressBar
             android:id="@+id/progress"

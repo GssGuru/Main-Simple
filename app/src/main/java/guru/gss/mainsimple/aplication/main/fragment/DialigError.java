@@ -78,6 +78,7 @@ public class DialigError extends DialogFragment {
 
     public interface InterfaceCallback {
         void refresh();
+
         void exit();
     }
 

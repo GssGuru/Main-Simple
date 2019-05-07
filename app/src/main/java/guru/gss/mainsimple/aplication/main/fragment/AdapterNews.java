@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import guru.gss.mainsimple.R;
 import guru.gss.mainsimple.utils.model.NewsModel;
 
-/*Simple adapter for News*/
 public class AdapterNews extends RecyclerView.Adapter<AdapterNews.ViewHolder> {
 
     private Context context;
@@ -64,7 +63,7 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.ViewHolder> {
 
             Glide.with(context)
                     .load(newsModel.getUrlToImage())
-                    .skipMemoryCache( true )
+                    .skipMemoryCache(true)
                     .listener(new RequestListener<String, GlideDrawable>() {
                         @Override
                         public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
@@ -93,7 +92,7 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.ViewHolder> {
         holder.iv_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                if(!TextUtils.isEmpty(newsModel.getUrl())) {
+                if (!TextUtils.isEmpty(newsModel.getUrl())) {
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
                     sendIntent.putExtra(Intent.EXTRA_TEXT, newsModel.getUrl());

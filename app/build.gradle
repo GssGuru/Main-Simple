@@ -30,7 +30,4 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 
     implementation 'com.github.bumptech.glide:glide:3.8.0'
-
-    implementation 'me.everything:overscroll-decor-android:1.0.4'
-    implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
 }

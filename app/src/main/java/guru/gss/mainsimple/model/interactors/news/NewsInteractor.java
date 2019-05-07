@@ -8,11 +8,7 @@ import guru.gss.mainsimple.model.repository.network.NetworkRepository;
 
 public class NewsInteractor implements Interactor.InteractorNews {
 
-
-
-
-    NetworkRepository networkRepository;
-
+    private NetworkRepository networkRepository;
 
     public NewsInteractor(NetworkRepository networkRepository) {
         this.networkRepository = networkRepository;

@@ -57,7 +57,7 @@ public class BaseActivity extends AppCompatActivity {
         return fragment;
     }
 
-    public void setFragment(Fragment fragment, int layoutResIs){
+    public void setFragment(Fragment fragment, int layoutResIs) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         String tag = fragment.getClass().getSimpleName();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

@@ -20,7 +20,7 @@ public class PresenterFragment extends MvpPresenter<ViewFragment> {
     }
 
     public void getNewsList(String author) {
-        if (list != null){
+        if (list != null) {
             getViewState().setListNews(list);
         } else {
             newsInteractor.getList(author, new OnFinishedListener() {
@@ -40,6 +40,5 @@ public class PresenterFragment extends MvpPresenter<ViewFragment> {
                 }
             });
         }
-
     }
 }

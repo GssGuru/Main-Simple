@@ -3,6 +3,9 @@ package guru.gss.mainsimple.aplication.main.fragment;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +19,6 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
-import com.baoyz.widget.PullRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -47,7 +49,7 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
     private ProgressBar progress;
     private RecyclerView recyclerView;
     private LinearLayout fl_items_not_found;
-    private PullRefreshLayout refresh_view;
+    private SwipeRefreshLayout refresh_view;
 
     public FragmentNews() {
     }
@@ -71,7 +73,7 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.f_news, container, false);
 
@@ -80,7 +82,7 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
         recyclerView = v.findViewById(R.id.recyclerView);
         fl_items_not_found = v.findViewById(R.id.fl_items_not_found);
 
-        refresh_view.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+        refresh_view.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 presenter.getNewsList(author);
@@ -100,7 +102,7 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
         Toolbar mToolbar = v.findViewById(R.id.toolbar);
         mToolbar.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         mToolbar.setNavigationIcon(R.drawable.ic_menu);
-        mToolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.colorIcons), PorterDuff.Mode.SRC_ATOP);
+        Objects.requireNonNull(mToolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.colorIcons), PorterDuff.Mode.SRC_ATOP);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,6 +114,9 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
 
         mToolbar.setTitle(String.valueOf(title));
         mToolbar.setTitleTextColor(getResources().getColor(R.color.colorIcons));
+
+        AppBarLayout app_bar = v.findViewById(R.id.app_bar);
+        hideToolbar(app_bar, mToolbar);
 
         presenter.getNewsList(author);
 
@@ -175,7 +180,7 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
         mDialigError.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), mDialigError.getClass().getSimpleName());
     }
 
-    public void hideRefreshView(PullRefreshLayout refresh_view) {
+    private void hideRefreshView(SwipeRefreshLayout refresh_view) {
         if (refresh_view.isShown()) {
             refresh_view.setRefreshing(false);
         }
