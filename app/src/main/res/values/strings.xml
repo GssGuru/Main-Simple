@@ -1,13 +1,12 @@
 <resources>
-    <string name="app_name">My Newspapers</string>
+    <string name="app_name">Main Simple</string>
 
     <string name="text_error">Error</string>
-    <string name="text_exit">Exit</string>
-    <string name="text_try_again">Try again</string>
     <string name="text_error_message">Error connecting to the server… Please try again or quit the application</string>
-
-    <string name="text_send_to">Send to</string>
     <string name="text_items_not_found">Items Not Found</string>
+    <string name="text_try_again">Try again</string>
+    <string name="text_exit">Exit</string>
+    <string name="text_send_to">Send to</string>
 
     <string name="the_washington_post">The Washington Post</string>
     <string name="the_new_york_times">The New York Times</string>
@@ -19,7 +18,5 @@
     <string name="independent">Independent</string>
     <string name="reuters">Reuters</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#952424</color>
+
+    <color name="colorPrimary">#424242</color>
     <color name="colorPrimaryDark">#181818</color>
     <color name="colorAccent">#9f9f9f</color>
+
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorTextNormal">#181818</color>
     <color name="colorTextLight">#a6a6a6</color>
     <color name="colorButtons">#ee00ff</color>
     <color name="colorIcons">#181818</color>
     <color name="colorTrasnFull">#00ffffff</color>
-
-    <array name="progress_bar_colors">
-        <item>@color/colorTextLight</item>
-        <item>@color/colorTextLight</item>
-        <item>@color/colorTextLight</item>
-        <item>@color/colorTextLight</item>
-    </array>
 
 </resources>
