@@ -8,10 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.FrameLayout;
 
 import java.util.Objects;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import guru.gss.mainsimple.R;
 
 public class DialigError extends DialogFragment {
@@ -32,26 +33,20 @@ public class DialigError extends DialogFragment {
         getDialog().setCanceledOnTouchOutside(false);
         Objects.requireNonNull(getDialog().getWindow()).setBackgroundDrawableResource(R.color.colorTrasnFull);
         View v = inflater.inflate(R.layout.d_error, container, false);
-
-        FrameLayout fl_ok = v.findViewById(R.id.fl_ok);
-        fl_ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                interfaceCallback.refresh();
-                dismiss();
-            }
-        });
-
-        FrameLayout fl_cancel = v.findViewById(R.id.fl_cancel);
-        fl_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                interfaceCallback.exit();
-                dismiss();
-            }
-        });
-
+        ButterKnife.bind(this, v);
         return v;
+    }
+
+    @OnClick(R.id.fl_ok)
+    public void fl_ok(View view) {
+        interfaceCallback.refresh();
+        dismiss();
+    }
+
+    @OnClick(R.id.fl_cancel)
+    public void fl_cancel(View view) {
+        interfaceCallback.exit();
+        dismiss();
     }
 
     @Override

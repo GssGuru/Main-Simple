@@ -22,6 +22,8 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import guru.gss.mainsimple.R;
 import guru.gss.mainsimple.utils.model.NewsModel;
 
@@ -115,22 +117,18 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.ViewHolder> {
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView iv_image, iv_share;
-        private TextView tv_title, tv_description, tv_time;
-        private LinearLayout ll_click;
-        private FrameLayout fl_media_content;
-        private ProgressBar pb_image;
+        @BindView(R.id.iv_image) ImageView iv_image;
+        @BindView(R.id.iv_share) ImageView iv_share;
+        @BindView(R.id.tv_title) TextView tv_title;
+        @BindView(R.id.tv_description) TextView tv_description;
+        @BindView(R.id.tv_time) TextView tv_time;
+        @BindView(R.id.ll_click) LinearLayout ll_click;
+        @BindView(R.id.fl_media_content) FrameLayout fl_media_content;
+        @BindView(R.id.pb_image) ProgressBar pb_image;
 
         ViewHolder(View itemView) {
             super(itemView);
-            pb_image = itemView.findViewById(R.id.pb_image);
-            fl_media_content = itemView.findViewById(R.id.fl_media_content);
-            ll_click = itemView.findViewById(R.id.ll_click);
-            iv_image = itemView.findViewById(R.id.iv_image);
-            iv_share = itemView.findViewById(R.id.iv_share);
-            tv_title = itemView.findViewById(R.id.tv_title);
-            tv_description = itemView.findViewById(R.id.tv_description);
-            tv_time = itemView.findViewById(R.id.tv_time);
+            ButterKnife.bind(this, itemView);
         }
     }
 

@@ -6,6 +6,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
+import butterknife.ButterKnife;
 import guru.gss.mainsimple.R;
 import guru.gss.mainsimple.aplication.BaseActivity;
 import guru.gss.mainsimple.aplication.main.fragment.FragmentNews;
@@ -20,6 +21,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_main);
+        ButterKnife.bind(this);
 
         mDrawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);

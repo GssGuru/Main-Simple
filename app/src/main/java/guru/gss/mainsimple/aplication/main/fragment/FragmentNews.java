@@ -23,6 +23,8 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import guru.gss.mainsimple.R;
 import guru.gss.mainsimple.aplication.BaseFragment;
 import guru.gss.mainsimple.model.interactors.news.NewsInteractor;
@@ -46,13 +48,15 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
     private OnFragmentInteractionListener mListener;
 
     private AdapterNews adapterNews;
-    private ProgressBar progress;
-    private RecyclerView recyclerView;
-    private LinearLayout fl_items_not_found;
-    private SwipeRefreshLayout refresh_view;
 
-    public FragmentNews() {
-    }
+    @BindView(R.id.fl_items_not_found) LinearLayout fl_items_not_found;
+    @BindView(R.id.progress) ProgressBar progress;
+    @BindView(R.id.recyclerView) RecyclerView recyclerView;
+    @BindView(R.id.refresh_view) SwipeRefreshLayout refresh_view;
+    @BindView(R.id.toolbar) Toolbar mToolbar;
+    @BindView(R.id.app_bar) AppBarLayout app_bar;
+
+    public FragmentNews() {}
 
     public static FragmentNews newInstance(String author, String title) {
         FragmentNews fragment = new FragmentNews();
@@ -76,11 +80,7 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.f_news, container, false);
-
-        progress = v.findViewById(R.id.progress);
-        refresh_view = v.findViewById(R.id.refresh_view);
-        recyclerView = v.findViewById(R.id.recyclerView);
-        fl_items_not_found = v.findViewById(R.id.fl_items_not_found);
+        ButterKnife.bind(this, v);
 
         refresh_view.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -99,7 +99,6 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
         recyclerView.setVisibility(View.GONE);
         fl_items_not_found.setVisibility(View.GONE);
 
-        Toolbar mToolbar = v.findViewById(R.id.toolbar);
         mToolbar.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         mToolbar.setNavigationIcon(R.drawable.ic_menu);
         Objects.requireNonNull(mToolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.colorIcons), PorterDuff.Mode.SRC_ATOP);
@@ -114,8 +113,6 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
 
         mToolbar.setTitle(String.valueOf(title));
         mToolbar.setTitleTextColor(getResources().getColor(R.color.colorIcons));
-
-        AppBarLayout app_bar = v.findViewById(R.id.app_bar);
         hideToolbar(app_bar, mToolbar);
 
         presenter.getNewsList(author);
