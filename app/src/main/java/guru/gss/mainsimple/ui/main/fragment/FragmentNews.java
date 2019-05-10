@@ -131,6 +131,7 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
             if (recyclerView.getVisibility() != View.VISIBLE) {
                 showContentAnimation(new ContentAnimator(), recyclerView, progress);
             }
+
         }
         hideRefreshView(refresh_view);
     }
