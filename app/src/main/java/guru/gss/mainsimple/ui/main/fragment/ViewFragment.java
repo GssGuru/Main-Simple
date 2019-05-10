@@ -1,4 +1,4 @@
-package guru.gss.mainsimple.aplication.main.fragment;
+package guru.gss.mainsimple.ui.main.fragment;
 
 import com.arellomobile.mvp.MvpView;
 

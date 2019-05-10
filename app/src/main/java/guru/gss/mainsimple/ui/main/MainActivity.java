@@ -1,4 +1,4 @@
-package guru.gss.mainsimple.aplication.main;
+package guru.gss.mainsimple.ui.main;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -8,14 +8,13 @@ import android.view.MenuItem;
 
 import butterknife.ButterKnife;
 import guru.gss.mainsimple.R;
-import guru.gss.mainsimple.aplication.BaseActivity;
-import guru.gss.mainsimple.aplication.main.fragment.FragmentNews;
+import guru.gss.mainsimple.ui.BaseActivity;
+import guru.gss.mainsimple.ui.main.fragment.FragmentNews;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, FragmentNews.OnFragmentInteractionListener {
 
     private int mIdSelectedItem;
     private DrawerLayout mDrawer;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

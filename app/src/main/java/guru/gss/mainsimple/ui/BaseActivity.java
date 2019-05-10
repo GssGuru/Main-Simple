@@ -1,4 +1,4 @@
-package guru.gss.mainsimple.aplication;
+package guru.gss.mainsimple.ui;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -9,7 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 
 import guru.gss.mainsimple.R;
-import guru.gss.mainsimple.aplication.main.fragment.FragmentNews;
+import guru.gss.mainsimple.ui.main.fragment.FragmentNews;
+import guru.gss.mainsimple.ui.utils.UiUtilsInteractor;
 
 @SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {

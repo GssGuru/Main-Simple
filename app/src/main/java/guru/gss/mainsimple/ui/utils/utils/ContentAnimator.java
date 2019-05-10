@@ -1,16 +1,16 @@
-package guru.gss.mainsimple.aplication;
+package guru.gss.mainsimple.ui.utils.utils;
 
-import android.support.design.widget.AppBarLayout;
-import android.support.v7.widget.Toolbar;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
-import com.arellomobile.mvp.MvpAppCompatFragment;
+import guru.gss.mainsimple.ui.utils.UiUtilsInteractor;
 
-public class BaseFragment extends MvpAppCompatFragment {
+public class ContentAnimator implements UiUtilsInteractor.ContentAnimator {
 
-    public void showContentAnimation(final View newView, final View oldView) {
+    public void changeContent(final View newView, final View oldView) {
         final AlphaAnimation newViewAnimation = new AlphaAnimation(0.0f, 1.0f);
         AlphaAnimation oldViewAnimation = new AlphaAnimation(1.0f, 0.0f);
         newViewAnimation.setDuration(250);
@@ -30,16 +30,6 @@ public class BaseFragment extends MvpAppCompatFragment {
 
             @Override
             public void onAnimationRepeat(Animation animation) {
-            }
-        });
-    }
-
-
-    public void hideToolbar(AppBarLayout app_bar, final Toolbar toolbar) {
-        app_bar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                toolbar.setAlpha(1.5f - ((float) Math.abs(verticalOffset) / ((float) appBarLayout.getTotalScrollRange() / 3)));
             }
         });
     }
