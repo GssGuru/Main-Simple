@@ -1,5 +1,5 @@
 # Main Page
-about
+Simple main page with news feeds using fragments, dialogs, adapter, navigation menu
 
 # About the aplication
  - Simple example client-server aplication
