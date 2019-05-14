@@ -35,7 +35,7 @@ To make our code more flexible we apply the MVP architectural pattern. Divide ap
 - repositories - here we work only with data. We take and place them in the database, internal storage or work with Internet requests
 
 пакет ui. Divide package into parts:
-- main
+- main - 
 - utils
 - BaseActivity.java
 - BaseFragment.java
@@ -48,7 +48,6 @@ The main activity. Here we manage fragments using the navigation menu.
 - [`ViewFragment.java`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/FragmentNewsFeed.java) - Element of the architectural pattern MVP. Binds Presenter and UI
 - [`AdapterNewsFeed`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/AdapterNewsFeed.java) - using it we work with a list
 - [`DialigError`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/DialigError.java) - Dialog box to display error
-- [`ModelNewsFeed`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/ModelNewsFeed.java) - Model of one news in the news feed
 
 ## Resources code
 [`Res folder.`](https://github.com/GssGuru/Login-Beginner/tree/master/app/src/main/res) Change only Application Name
