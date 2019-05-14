@@ -212,8 +212,8 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
     }
 
     /*
-    ENG: Methods of list update
-    RU: Методы обновления списка
+    ENG: Method of list update
+    RU: Метод обновления списка
     */
     private void hideRefreshView(SwipeRefreshLayout refresh_view) {
         if (refresh_view.isShown()) {
