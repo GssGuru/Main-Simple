@@ -6,9 +6,13 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/*
+ENG: Simple client Retrofit initialization
+RU: Простая инициализация Retrofit клиента
+*/
 public class RetrofitClient {
 
-    private static final String BASE_URL = "https://newsapi.org/v1/";
+    private static final String BASE_URL = "https://newsapi.org/v1/articles";
 
     private static RetrofitClient instance = null;
     private ApiClient apiClient;

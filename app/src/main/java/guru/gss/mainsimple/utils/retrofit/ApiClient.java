@@ -5,6 +5,10 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
+/*
+ENG: Interface Api with methods for internet request
+RU: Interface Api с методами для интернет запроса
+*/
 public interface ApiClient {
 
     @GET("articles")

@@ -11,15 +11,13 @@ android {
         versionCode 1
         versionName "1.0"
     }
-
-//     Butterknife requires Java 8.
-//    compileOptions {
-//        sourceCompatibility JavaVersion.VERSION_1_8
-//        targetCompatibility JavaVersion.VERSION_1_8
-//    }
 }
 
 dependencies {
+    /*
+    ENG: dependencies for work with base elements: Fragments, List Views, Vector Images ...
+    RU: зависимости для работы с базовыми элементами: фрагментами, списками, векторными изображениями ...
+    */
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
@@ -27,18 +25,33 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
 
+    /*
+    ENG: dependencies for moxy(MVP)
+    RU: зависимости для moxy(MVP)
+    */
     implementation 'com.arello-mobile:moxy:1.5.3'
     implementation 'com.arello-mobile:moxy-android:1.5.3'
     implementation 'com.arello-mobile:moxy-app-compat:1.5.3'
     annotationProcessor 'com.arello-mobile:moxy-compiler:1.5.3'
 
+    /*
+    ENG: dependencies for the internet request
+    RU: зависимости для интернет-запроса
+    */
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
-
-
+    
+    /*
+    ENG: dependencies for butterknife
+    RU: зависимости для butterknife
+    */
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
+    /*
+    ENG: dependencies for the showing image from server
+    RU: зависимости для показа изображения с сервера
+    */
     implementation 'com.github.bumptech.glide:glide:3.8.0'
 }

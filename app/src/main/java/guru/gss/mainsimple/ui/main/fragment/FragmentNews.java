@@ -32,28 +32,36 @@ import guru.gss.mainsimple.ui.BaseFragment;
 import guru.gss.mainsimple.ui.utils.utils.ContentAnimator;
 import guru.gss.mainsimple.utils.model.NewsModel;
 
+/*
+ENG: Fragment for working with news feed
+RU: Фрагмент для работы с новосной лентой
+*/
 public class FragmentNews extends BaseFragment implements ViewFragment {
 
+    /*
+    ENG: Initialize Presenter
+    RU: Инициализируем Presenter
+    */
     @InjectPresenter
     PresenterFragment presenter;
-
     @ProvidePresenter
     PresenterFragment providePresenter() {
         return new PresenterFragment(new NewsInteractor(new NetworkRepositoryImpl()));
     }
 
+    /*
+    ENG: Prepare elements to work with fragment
+    RU: Подготовить элементы для работы с фрагментом
+    */
     private static final String NEWS_AUTHOR = "news_author";
     private static final String NEWS_TITLE = "news_title";
     private String author, title;
-
-    private OnFragmentInteractionListener mListener;
-
-    public interface OnFragmentInteractionListener {
-        void openDrover();
-    }
-
     private AdapterNews adapterNews;
 
+    /*
+    ENG: Prepare Views elements
+    RU: Подготовить элементы Views
+    */
     @BindView(R.id.fl_items_not_found)
     LinearLayout fl_items_not_found;
     @BindView(R.id.progress)
@@ -70,6 +78,10 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
     public FragmentNews() {
     }
 
+    /*
+    ENG: Transfer to the Fragment information about the author
+    RU: Передаем в Фрагмент информацию про автора
+    */
     public static FragmentNews newInstance(String author, String title) {
         FragmentNews fragment = new FragmentNews();
         Bundle args = new Bundle();
@@ -92,6 +104,11 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.f_news, container, false);
+
+        /*
+        ENG: Initialize the views
+        RU: Инициализировать view
+        */
         ButterKnife.bind(this, v);
         setupToolbar();
         setupListView();
@@ -99,27 +116,10 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
         return v;
     }
 
-    boolean mUserVisibleHint;
-
-    @Override
-    public void setMenuVisibility(boolean menuVisible) {
-        super.setMenuVisibility(menuVisible);
-        mUserVisibleHint = menuVisible;
-        if (menuVisible && isResumed()) {
-            onResume();
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mUserVisibleHint) {
-            if (adapterNews.getItemCount() == 0) {
-                presenter.getNewsList(author);
-            }
-        }
-    }
-
+    /*
+    ENG: Show news feed
+    RU: Показать новостную ленту
+    */
     @Override
     public void setListNews(ArrayList<NewsModel> list) {
         if (list.size() == 0) {
@@ -136,11 +136,19 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
         hideRefreshView(refresh_view);
     }
 
+    /*
+    ENG: Show View with "Empty List"
+    RU: Показать View с надписью "Empty List"
+    */
     @Override
     public void setEmptyList() {
         hideRefreshView(refresh_view);
     }
 
+    /*
+    ENG: Show Error Dialog
+    RU: Показать диалоговое окно с сообщением об ошибке
+    */
     @Override
     public void setError() {
         hideRefreshView(refresh_view);
@@ -159,23 +167,10 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
         mDialigError.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), mDialigError.getClass().getSimpleName());
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
+    /*
+    ENG: Initialization and work with Toolbar
+    RU: Инициализация и работа с Toolbar
+    */
     private void setupToolbar() {
         mToolbar.setTitle(String.valueOf(title));
         mToolbar.setTitleTextColor(getResources().getColor(R.color.colorIcons));
@@ -198,6 +193,10 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
         });
     }
 
+    /*
+    ENG: Initialization of the news feed
+    RU: Инициализация новостной ленты
+    */
     private void setupListView() {
         adapterNews = new AdapterNews(getContext());
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_news_animation);
@@ -212,10 +211,40 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
         });
     }
 
+    /*
+    ENG: Methods of list update
+    RU: Методы обновления списка
+    */
     private void hideRefreshView(SwipeRefreshLayout refresh_view) {
         if (refresh_view.isShown()) {
             refresh_view.setRefreshing(false);
         }
+    }
+
+    /*
+    ENG: Add an interface with method to Fragment.
+    RU: Добавляем нашему Фрагменту интерфейс с методом
+    */
+    private OnFragmentInteractionListener mListener;
+    public interface OnFragmentInteractionListener {
+        void openDrover();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
 
 

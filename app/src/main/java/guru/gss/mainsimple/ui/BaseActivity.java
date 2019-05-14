@@ -12,18 +12,17 @@ import guru.gss.mainsimple.R;
 import guru.gss.mainsimple.ui.main.fragment.FragmentNews;
 import guru.gss.mainsimple.ui.utils.UiUtilsInteractor;
 
+/*
+ENG: Basic activity where we write all the functions that can be common to all activate
+RU: Базовые activity куда пишем все функции, которые могут быть общими для всех активируют
+*/
 @SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {
 
-    static {
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
+    /*
+    ENG: The method returns a fragment in accordance with the ID
+    RU: Метод возвращает фрагмент в соответствии с ID
+    */
     public Fragment getMainFragment(int id) {
         Fragment fragment = null;
         switch (id) {
@@ -58,6 +57,10 @@ public class BaseActivity extends AppCompatActivity {
         return fragment;
     }
 
+    /*
+    ENG: The method of switching fragments between themselves
+    RU: Метод переключения фрагментов между собой
+    */
     public void setFragment(Fragment fragment, int layoutResIs) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         String tag = fragment.getClass().getSimpleName();

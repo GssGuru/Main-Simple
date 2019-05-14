@@ -5,16 +5,28 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import guru.gss.mainsimple.R;
 import guru.gss.mainsimple.ui.BaseActivity;
 import guru.gss.mainsimple.ui.main.fragment.FragmentNews;
 
+/*
+ENG: The main activity with the Navigation menu and container for the fragments. Using the menu, we will switch fragments
+RU: Главное активити с Навигационным меню и контейнером для фрагментов. С помощью меню будем переключать фрагменти
+*/
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, FragmentNews.OnFragmentInteractionListener {
 
+    /*
+    ENG: Prepare elements of the Navigation menu
+    RU: Подготовить элементы Навигационного меню
+    */
+    @BindView(R.id.nav_view) NavigationView nav_view;
+    @BindView(R.id.drawer_layout) DrawerLayout drawer_layout;
+
     private int mIdSelectedItem;
-    private DrawerLayout mDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,16 +34,21 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setContentView(R.layout.a_main);
         ButterKnife.bind(this);
 
-        mDrawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getMenu().getItem(0).setChecked(true);
-
-        setFragment(getMainFragment(R.id.i_the_washington_post), R.id.fl_fragment_conteiner);
+        /*
+        ENG: Work with the Navigation menu
+        RU: Работаем с Navigation menu
+        */
+        nav_view.setNavigationItemSelectedListener(this);
+        nav_view.getMenu().getItem(0).setChecked(true);
         mIdSelectedItem = R.id.i_the_washington_post;
+        setFragment(getMainFragment(R.id.i_the_washington_post), R.id.fl_fragment_conteiner);
 
     }
 
+    /*
+    ENG: Navigation menu. item click handler
+    RU: Navigation menu. обработчик click по позициям
+    */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(final MenuItem item) {
@@ -40,21 +57,29 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             mIdSelectedItem = id;
             setFragment(getMainFragment(id), R.id.fl_fragment_conteiner);
         }
-        mDrawer.closeDrawer(GravityCompat.START);
+        drawer_layout.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    /*
+    ENG: Override the Backspace button to check if the Navigation menu is open.
+    RU: Переопределить кнопку Backspace для проверки не открыто ли Navigation menu
+    */
     @Override
     public void onBackPressed() {
-        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
-            mDrawer.closeDrawer(GravityCompat.START);
+        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
     }
 
+    /*
+    ENG: Interface method from Fragment NewsFeed for opening the Navigation menu
+    RU: Метод интерфейса из Fragment NewsFeed для открытия Navigation menu
+    */
     @Override
     public void openDrover() {
-        mDrawer.openDrawer(GravityCompat.START);
+        drawer_layout.openDrawer(GravityCompat.START);
     }
 }

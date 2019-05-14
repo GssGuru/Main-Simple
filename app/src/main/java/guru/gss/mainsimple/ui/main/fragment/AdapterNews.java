@@ -27,8 +27,16 @@ import butterknife.ButterKnife;
 import guru.gss.mainsimple.R;
 import guru.gss.mainsimple.utils.model.NewsModel;
 
+/*
+ENG: Simple adapter showing news feed
+RU: Простой adapter отображающий новостную ленту
+*/
 public class AdapterNews extends RecyclerView.Adapter<AdapterNews.ViewHolder> {
 
+    /*
+    ENG: Prepare items to work with the list
+    RU: Подготовить элементы для работы со списком
+    */
     private Context context;
     private ArrayList<NewsModel> list;
 
@@ -37,6 +45,10 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.ViewHolder> {
         this.list = new ArrayList<>();
     }
 
+    /*
+    ENG: Basic elements for working with a list
+    RU: Базовые элементы для работы со списком
+    */
     @NonNull
     @Override
     public AdapterNews.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,6 +57,15 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.ViewHolder> {
         return new AdapterNews.ViewHolder(v);
     }
 
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
+
+    /*
+    ENG: Work with View for each position in the list
+    RU: Работаем с View для каждой позиции в списке
+    */
     @Override
     public void onBindViewHolder(@NonNull final AdapterNews.ViewHolder holder, final int position) {
 
@@ -110,11 +131,10 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.ViewHolder> {
         }
     }
 
-    @Override
-    public int getItemCount() {
-        return list.size();
-    }
-
+    /*
+    ENG: prepare Views elements
+    RU: подготовить элементы Views
+    */
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.iv_image) ImageView iv_image;
@@ -132,6 +152,10 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.ViewHolder> {
         }
     }
 
+    /*
+    ENG: Transfer the news list to the adapter
+    RU: Передаем список новостей в адаптер
+    */
     void addAll(ArrayList<NewsModel> list) {
         this.list.clear();
         this.list.addAll(list);

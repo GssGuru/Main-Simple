@@ -5,7 +5,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Objects;
 
-/*Model for one news*/
+/*
+ENG: Model with all required fields for news feed
+RU: Модель со всеми необходимыми полями для новостной ленты
+*/
 public class NewsModel {
 
     public NewsModel(String title, String description, String url, String urlToImage, String publishedAt) {

@@ -8,6 +8,10 @@ import android.view.animation.Animation;
 
 import guru.gss.mainsimple.ui.utils.UiUtilsInteractor;
 
+/*
+ENG: Utils for work with animation
+RU: Utils для работы с анимацией
+*/
 public class ContentAnimator implements UiUtilsInteractor.ContentAnimator {
 
     public void changeContent(final View newView, final View oldView) {

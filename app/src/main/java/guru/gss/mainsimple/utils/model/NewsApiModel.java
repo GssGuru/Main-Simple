@@ -5,7 +5,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-/*The model is needed for retrofit GsonConverterFactory*/
+/*
+ENG: The model is needed for Retrofit GsonConverterFactory
+RU: Модель необходима для Retrofit GsonConverterFactory
+*/
 public class NewsApiModel {
 
     @SerializedName("articles")
