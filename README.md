@@ -15,13 +15,13 @@ Description of the application code
 <p>
 
 ## Manifest
-In the [`Manifest`](https://github.com/GssGuru/Login-Beginner/blob/master/app/src/main/AndroidManifest.xml) add permission on the Internet and initialize MyApp.class. Read the comments in the code
+In the [`Manifest`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/AndroidManifest.xml) add permission on the Internet and initialize MyApp.class. Read the comments in the code
 
 ## gradle
-In the [`gradle`](https://github.com/GssGuru/Login-Beginner/blob/master/app/build.gradle) add only dependencies on the Internet, ButterKnife , Moxy(MVP) and library for work with image. Read the comments in the code
+In the [`gradle`](https://github.com/GssGuru/Main-Simple/blob/master/app/build.gradle) add only dependencies on the Internet, ButterKnife , Moxy(MVP) and library for work with image. Read the comments in the code
 
 ## Aplication code
-[`Aplication code`](https://github.com/GssGuru/Login-Beginner/tree/master/app/src/main/java/guru/gss/loginbeginner) - is the code with the mechanics of the application.
+[`Aplication code`](https://github.com/GssGuru/Main-Simple/tree/master/app/src/main/java/guru/gss/mainsimple) - is the code with the mechanics of the application.
 Carefully read the code comments.
 
 To make our code more flexible we apply the MVP architectural pattern. Divide application into parts:
@@ -41,16 +41,16 @@ To make our code more flexible we apply the MVP architectural pattern. Divide ap
 - BaseFragment.java
 
 пакет main. Divide package into parts:
-- [`MainActivity`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/MainActivity.java) - 
+- [`MainActivity`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/MainActivity.java) - 
 The main activity. Here we manage fragments using the navigation menu.
-- [`FragmentNews`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/FragmentNewsFeed.java) - Fragment showing a specific news feed
-- [`PresenterFragment.java`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/FragmentNewsFeed.java) - Element of the architectural pattern MVP. Binds business logic and view
-- [`ViewFragment.java`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/FragmentNewsFeed.java) - Element of the architectural pattern MVP. Binds Presenter and UI
-- [`AdapterNewsFeed`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/AdapterNewsFeed.java) - using it we work with a list
-- [`DialigError`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/DialigError.java) - Dialog box to display error
+- [`FragmentNews`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/fragment/FragmentNews.java) - Fragment showing a specific news feed
+- [`PresenterFragment.java`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/fragment/PresenterFragment.java) - Element of the architectural pattern MVP. Binds business logic and view
+- [`ViewFragment.java`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/fragment/ViewFragment.java) - Element of the architectural pattern MVP. Binds Presenter and UI
+- [`AdapterNews`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/fragment/AdapterNews.java) - using it we work with a list
+- [`DialigError`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/fragment/DialigError.java) - Dialog box to display error
 
 ## Resources code
-[`Res folder.`](https://github.com/GssGuru/Login-Beginner/tree/master/app/src/main/res) Change only Application Name
+[`Res folder.`](https://github.com/GssGuru/Main-Simple/tree/master/app/src/main/res) Change only Application Name
 
 </p>
 </details>
