@@ -40,6 +40,16 @@ To make our code more flexible we apply the MVP architectural pattern. Divide ap
 - BaseActivity.java
 - BaseFragment.java
 
+пакет main. Divide package into parts:
+- [`MainActivity`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/MainActivity.java) - 
+The main activity. Here we manage fragments using the navigation menu.
+- [`FragmentNews`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/FragmentNewsFeed.java) - Fragment showing a specific news feed
+- [`PresenterFragment.java`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/FragmentNewsFeed.java) - Element of the architectural pattern MVP. Binds business logic and view
+- [`ViewFragment.java`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/FragmentNewsFeed.java) - Element of the architectural pattern MVP. Binds Presenter and UI
+- [`AdapterNewsFeed`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/AdapterNewsFeed.java) - using it we work with a list
+- [`DialigError`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/DialigError.java) - Dialog box to display error
+- [`ModelNewsFeed`](https://github.com/GssGuru/Main-Beginner/blob/master/app/src/main/java/guru/gss/mainbeginner/ModelNewsFeed.java) - Model of one news in the news feed
+
 ## Resources code
 [`Res folder.`](https://github.com/GssGuru/Login-Beginner/tree/master/app/src/main/res) Change only Application Name
 
