@@ -35,14 +35,10 @@ To make our code more flexible we apply the MVP architectural pattern. Divide ap
 - repositories - here we work only with data. We take and place them in the database, internal storage or work with Internet requests
 
 пакет ui. Divide package into parts:
-- login
+- main
 - utils
 - BaseActivity.java
-
-пакет login. Divide package into parts:
-- LoginActivity.java
-- LoginActivityPresenter.java
-- LoginActivityView.java
+- BaseFragment.java
 
 ## Resources code
 [`Res folder.`](https://github.com/GssGuru/Login-Beginner/tree/master/app/src/main/res) Change only Application Name
