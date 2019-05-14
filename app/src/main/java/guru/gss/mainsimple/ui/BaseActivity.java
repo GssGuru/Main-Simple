@@ -1,16 +1,13 @@
 package guru.gss.mainsimple.ui;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
 
 import guru.gss.mainsimple.R;
 import guru.gss.mainsimple.ui.main.fragment.FragmentNews;
-import guru.gss.mainsimple.ui.utils.UiUtilsInteractor;
 
 /*
 ENG: Basic activity where we write all the functions that can be common to all activate
