@@ -44,10 +44,10 @@ Package [`main`](https://github.com/GssGuru/Main-Simple/tree/master/app/src/main
 - [`MainActivity.java`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/MainActivity.java) - 
 The main activity. Here we manage fragments using the navigation menu.
 - [`NewsFeedFragment.java`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/fragment/NewsFeedFragment.java) - Fragment showing a specific news feed
-- [`PresenterFragment.java`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/fragment/PresenterFragment.java) - Element of the architectural pattern MVP. Binds business logic and view
+- [`NewsFeedFragmentPresenter.java`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/fragment/NewsFeedFragmentPresenter.java) - Element of the architectural pattern MVP. Binds business logic and view
 - [`NewsFeedFragmentVew.java`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/fragment/NewsFeedFragmentVew.java) - Element of the architectural pattern MVP. Binds Presenter and UI
 - [`NewsFeedAdapter.java`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/fragment/NewsFeedAdapter.java) - using it we work with a list
-- [`DialigError.java`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/fragment/DialigError.java) - Dialog box to display error
+- [`ErrorDialog.java`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/fragment/ErrorDialog.java) - Dialog box to display error
 
 ## Resources code
 [`Res folder.`](https://github.com/GssGuru/Main-Simple/tree/master/app/src/main/res) Change only Application Name
