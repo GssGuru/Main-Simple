@@ -35,10 +35,10 @@ To make our code more flexible we apply the MVP architectural pattern. Divide ap
 - repositories - here we work only with data. We take and place them in the database, internal storage or work with Internet requests
 
 пакет ui. Divide package into parts:
-- main - 
-- utils
-- BaseActivity.java
-- BaseFragment.java
+- main - This package is called in accordance with the activation and in it are all the components necessary for the operation of this activit
+- utils - our utilities that only work with UI elements
+- BaseActivity.java - Activity from which we extends all our Activity. It is good to keep the methods involved in different Activity
+- BaseFragment.java - Fragment from which we extends all our Fragments. It is good to keep the methods involved in different Fragments
 
 пакет main. Divide package into parts:
 - [`MainActivity`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/MainActivity.java) - 
