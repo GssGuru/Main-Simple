@@ -31,7 +31,7 @@ import guru.gss.mainsimple.utils.model.NewsModel;
 ENG: Simple adapter showing news feed
 RU: Простой adapter отображающий новостную ленту
 */
-public class AdapterNews extends RecyclerView.Adapter<AdapterNews.ViewHolder> {
+public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.ViewHolder> {
 
     /*
     ENG: Prepare items to work with the list
@@ -40,7 +40,7 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.ViewHolder> {
     private Context context;
     private ArrayList<NewsModel> list;
 
-    AdapterNews(Context context) {
+    NewsFeedAdapter(Context context) {
         this.context = context;
         this.list = new ArrayList<>();
     }
@@ -51,10 +51,10 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.ViewHolder> {
     */
     @NonNull
     @Override
-    public AdapterNews.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public NewsFeedAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.i_news, parent, false);
-        return new AdapterNews.ViewHolder(v);
+        return new NewsFeedAdapter.ViewHolder(v);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.ViewHolder> {
     RU: Работаем с View для каждой позиции в списке
     */
     @Override
-    public void onBindViewHolder(@NonNull final AdapterNews.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final NewsFeedAdapter.ViewHolder holder, final int position) {
 
         final NewsModel newsModel = list.get(position);
 

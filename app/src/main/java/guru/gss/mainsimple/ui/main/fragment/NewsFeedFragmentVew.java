@@ -10,7 +10,7 @@ import guru.gss.mainsimple.utils.model.NewsModel;
 ENG: interface to work with View from Presenter
 RU: interface для работы с View из Presenter
 */
-public interface ViewFragment extends MvpView {
+public interface NewsFeedFragmentVew extends MvpView {
 
     void setListNews(ArrayList<NewsModel> list);
 

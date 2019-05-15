@@ -36,17 +36,17 @@ import guru.gss.mainsimple.utils.model.NewsModel;
 ENG: Fragment for working with news feed
 RU: Фрагмент для работы с новосной лентой
 */
-public class FragmentNews extends BaseFragment implements ViewFragment {
+public class NewsFeedFragment extends BaseFragment implements NewsFeedFragmentVew {
 
     /*
     ENG: Initialize Presenter
     RU: Инициализируем Presenter
     */
     @InjectPresenter
-    PresenterFragment presenter;
+    NewsFeedPresenter presenter;
     @ProvidePresenter
-    PresenterFragment providePresenter() {
-        return new PresenterFragment(new NewsInteractor(new NetworkRepositoryImpl()));
+    NewsFeedPresenter providePresenter() {
+        return new NewsFeedPresenter(new NewsInteractor(new NetworkRepositoryImpl()));
     }
 
     /*
@@ -56,7 +56,7 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
     private static final String NEWS_AUTHOR = "news_author";
     private static final String NEWS_TITLE = "news_title";
     private String author, title;
-    private AdapterNews adapterNews;
+    private NewsFeedAdapter newsFeedAdapter;
 
     /*
     ENG: Prepare Views elements
@@ -75,15 +75,15 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
     @BindView(R.id.app_bar)
     AppBarLayout app_bar;
 
-    public FragmentNews() {
+    public NewsFeedFragment() {
     }
 
     /*
     ENG: Transfer to the Fragment information about the author
     RU: Передаем в Фрагмент информацию про автора
     */
-    public static FragmentNews newInstance(String author, String title) {
-        FragmentNews fragment = new FragmentNews();
+    public static NewsFeedFragment newInstance(String author, String title) {
+        NewsFeedFragment fragment = new NewsFeedFragment();
         Bundle args = new Bundle();
         args.putString(NEWS_AUTHOR, author);
         args.putString(NEWS_TITLE, title);
@@ -127,7 +127,7 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
                 showContentAnimation(new ContentAnimator(), fl_items_not_found, progress);
             }
         } else {
-            adapterNews.addAll(list);
+            newsFeedAdapter.addAll(list);
             if (recyclerView.getVisibility() != View.VISIBLE) {
                 showContentAnimation(new ContentAnimator(), recyclerView, progress);
             }
@@ -198,11 +198,11 @@ public class FragmentNews extends BaseFragment implements ViewFragment {
     RU: Инициализация новостной ленты
     */
     private void setupListView() {
-        adapterNews = new AdapterNews(getContext());
+        newsFeedAdapter = new NewsFeedAdapter(getContext());
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_news_animation);
         recyclerView.setLayoutAnimation(animation);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(adapterNews);
+        recyclerView.setAdapter(newsFeedAdapter);
         refresh_view.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
