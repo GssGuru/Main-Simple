@@ -19,14 +19,14 @@ import guru.gss.mainsimple.R;
 ENG: Dialog box to display internet request error
 RU: Диалоговое окно для показа ошибки интернет запроса
 */
-public class DialigError extends DialogFragment {
+public class ErrorDialog extends DialogFragment {
 
     /*
     ENG: Basic elements for working with a DialogFragment
     RU: Базовые элементы для работы со Диалоговым окном
     */
-    public static DialigError newInstance() {
-        return new DialigError();
+    public static ErrorDialog newInstance() {
+        return new ErrorDialog();
     }
 
     @Override

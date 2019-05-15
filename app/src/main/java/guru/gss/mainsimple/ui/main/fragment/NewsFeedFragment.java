@@ -43,10 +43,10 @@ public class NewsFeedFragment extends BaseFragment implements NewsFeedFragmentVe
     RU: Инициализируем Presenter
     */
     @InjectPresenter
-    NewsFeedPresenter presenter;
+    NewsFeedFragmentPresenter presenter;
     @ProvidePresenter
-    NewsFeedPresenter providePresenter() {
-        return new NewsFeedPresenter(new NewsInteractor(new NetworkRepositoryImpl()));
+    NewsFeedFragmentPresenter providePresenter() {
+        return new NewsFeedFragmentPresenter(new NewsInteractor(new NetworkRepositoryImpl()));
     }
 
     /*
@@ -152,8 +152,8 @@ public class NewsFeedFragment extends BaseFragment implements NewsFeedFragmentVe
     @Override
     public void setError() {
         hideRefreshView(refresh_view);
-        DialigError mDialigError = DialigError.newInstance();
-        mDialigError.registerInterfaceCallback(new DialigError.InterfaceCallback() {
+        ErrorDialog mErrorDialog = ErrorDialog.newInstance();
+        mErrorDialog.registerInterfaceCallback(new ErrorDialog.InterfaceCallback() {
             @Override
             public void refresh() {
                 presenter.getNewsList(author);
@@ -164,7 +164,7 @@ public class NewsFeedFragment extends BaseFragment implements NewsFeedFragmentVe
                 Objects.requireNonNull(getActivity()).finish();
             }
         });
-        mDialigError.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), mDialigError.getClass().getSimpleName());
+        mErrorDialog.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), mErrorDialog.getClass().getSimpleName());
     }
 
     /*

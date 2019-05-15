@@ -14,12 +14,12 @@ ENG: Presenter for View in which we store all dynamic data and working with the 
 RU: Presenter для View в котором мы храним все динамические данные и работаем с Interactors сущности
 */
 @InjectViewState
-public class NewsFeedPresenter extends MvpPresenter<NewsFeedFragmentVew> {
+public class NewsFeedFragmentPresenter extends MvpPresenter<NewsFeedFragmentVew> {
 
     private NewsInteractor newsInteractor;
     private ArrayList<NewsModel> list;
 
-    NewsFeedPresenter(NewsInteractor newsInteractor) {
+    NewsFeedFragmentPresenter(NewsInteractor newsInteractor) {
         this.newsInteractor = newsInteractor;
     }
 
