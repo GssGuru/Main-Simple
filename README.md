@@ -30,17 +30,17 @@ To make our code more flexible we apply the MVP architectural pattern. Divide ap
 - [`utils`](https://git.xml) - here we will store our utilities
 - [`MyApp.class`](https://git.xml) - root class in the application. Used for various flexible solutions and getting the context and any place of application
 
-пакет [`model`](https://git.xml). Divide package into parts:
+Package [`model`](https://git.xml). Divide package into parts:
 - [`interactors`](https://git.xml) - Here we will work with entities.
 - [`repositories`](https://git.xml) - here we work only with data. We take and place them in the database, internal storage or work with Internet requests
 
-пакет [`ui`](https://git.xml). Divide package into parts:
+Package [`ui`](https://git.xml). Divide package into parts:
 - [`main`](https://git.xml) - This package is called in accordance with the activation and in it are all the components necessary for the operation of this activit
 - [`utils`](https://git.xml) - our utilities that only work with UI elements
 - [`BaseActivity.java`](https://git.xml) - Activity from which we extends all our Activity. It is good to keep the methods involved in different Activity
 - [`BaseFragment.java`](https://git.xml) - Fragment from which we extends all our Fragments. It is good to keep the methods involved in different Fragments
 
-пакет [`main`](https://git.xml). Divide package into parts:
+Package [`main`](https://git.xml). Divide package into parts:
 - [`MainActivity`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/MainActivity.java) - 
 The main activity. Here we manage fragments using the navigation menu.
 - [`FragmentNews`](https://github.com/GssGuru/Main-Simple/blob/master/app/src/main/java/guru/gss/mainsimple/ui/main/fragment/FragmentNews.java) - Fragment showing a specific news feed
